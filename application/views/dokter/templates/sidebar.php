@@ -28,19 +28,19 @@
     </div>
 
     <li class="nav-item">
-        <a href="<?= base_url('dokter/'); ?>" class="nav-link">
+        <a href="<?= base_url('dokter/jadwal'); ?>" class="nav-link">
             <i class="fas fa-fw fa-bars"></i>
             <span>Lihat Jadwal Janji Member</span></a>
     </li>
 
     <li class="nav-item">
-        <a href="<?= base_url('dokter/'); ?>" class="nav-link">
+        <a href="<?= base_url('dokter/konsultasi_online'); ?>" class="nav-link">
             <i class="fas fa-fw fa-inbox"></i>
             <span>Lihat Konsultasi Member</span></a>
     </li>
 
     <li class="nav-item">
-        <a href="<?= base_url('dokter/'); ?>" class="nav-link">
+        <a href="<?= base_url('dokter/medical_record'); ?>" class="nav-link">
             <i class="fas fa-fw fa-user-md"></i>
             <span>Medical Record</span></a>
     </li>

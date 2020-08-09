@@ -23,6 +23,45 @@ class Dokter extends CI_Controller
         $this->load->view('dokter/templates/footer');
     }
 
+    public function jadwal()
+    {
+        $ambil = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['title'] = 'Eldora Vet Clinic - Dokter';
+        $data['dokter'] = $ambil;
+
+        $this->load->view('dokter/templates/header', $data);
+        $this->load->view('dokter/templates/sidebar', $data);
+        $this->load->view('dokter/templates/topbar', $data);
+        $this->load->view('dokter/jadwal', $data);
+        $this->load->view('dokter/templates/footer');
+    }
+
+    public function konsultasi_online()
+    {
+        $ambil = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['title'] = 'Eldora Vet Clinic - Dokter';
+        $data['dokter'] = $ambil;
+
+        $this->load->view('dokter/templates/header', $data);
+        $this->load->view('dokter/templates/sidebar', $data);
+        $this->load->view('dokter/templates/topbar', $data);
+        $this->load->view('dokter/konsultasi-online', $data);
+        $this->load->view('dokter/templates/footer');
+    }
+
+    public function medical_record()
+    {
+        $ambil = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['title'] = 'Eldora Vet Clinic - Dokter';
+        $data['dokter'] = $ambil;
+
+        $this->load->view('dokter/templates/header', $data);
+        $this->load->view('dokter/templates/sidebar', $data);
+        $this->load->view('dokter/templates/topbar', $data);
+        $this->load->view('dokter/medical-record', $data);
+        $this->load->view('dokter/templates/footer');
+    }
+
     public function edit_profile()
     {
         $ambil = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
