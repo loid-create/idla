@@ -56,7 +56,9 @@
                 <div class="col-sm-9">
                     <select name="jk" id="jk" class="form-control">
                         <?php
-                        if ($member['jenis_kelamin'] == 1) {
+                        if ($member['jenis_kelamin'] == 0) {
+                            $member['x'] = 'Belum Diatur';
+                        } elseif ($member['jenis_kelamin'] == 1) {
                             $member['x'] = 'Laki-Laki';
                         } else {
                             $member['x'] = 'Perempuan';
@@ -64,7 +66,7 @@
                         ?>
                         <option value="<?= $member['id']; ?>"><?= $member['x']; ?></option>
                         <option value="1">Laki-Laki</>
-                        <option value="0">Perempuan</option>
+                        <option value="2">Perempuan</option>
                     </select>
                 </div>
             </div>

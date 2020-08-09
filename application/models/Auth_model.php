@@ -64,25 +64,29 @@ class Auth_model extends CI_Model
         $jk = $this->input->post('jk', true);
         $alamat = $this->input->post('alamat', true);
         $kota = $this->input->post('kota', true);
+        $gambar_lama = $data['member']['gambar'];
 
-        $upload_gambar = $_FILES['image']['name'];
-        if ($upload_gambar) {
-            $config['allowed_types'] = 'jpg|png';
-            $config['max_size'] = '2048';
-            $config['upload_path'] = './assets/';
+        if ($_FILES['image']['error'] === 4) {
+            $upload_gambar = $gambar_lama;
+        } elseif ($gambar_lama == "member.png") {
+            $upload_gambar = "member.png";
+        } else {
+            $upload_gambar = $_FILES['image']['name'];
+            if ($upload_gambar) {
+                $config['allowed_types'] = 'jpg|png';
+                $config['max_size'] = '2048';
+                $config['upload_path'] = './assets/';
 
-            $this->load->library('upload', $config);
+                $this->load->library('upload', $config);
 
-            if ($this->upload->do_upload('image')) {
-                $old_image = $data['member']['gambar'];
-                if ($old_image != 'member.png') {
-                    unlink(FCPATH . 'assets/' . $old_image);
+                if ($this->upload->do_upload('image')) {
+                    unlink(FCPATH . 'assets/' . $gambar_lama);
+
+                    $new_image = $this->upload->data('file_name');
+                    $this->db->set('gambar', $new_image);
+                } else {
+                    echo $this->upload->display_errors();
                 }
-
-                $new_image = $this->upload->data('file_name');
-                $this->db->set('gambar', $new_image);
-            } else {
-                echo $this->upload->display_errors();
             }
         }
 

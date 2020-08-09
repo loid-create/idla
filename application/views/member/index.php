@@ -10,16 +10,16 @@
         <div class="card-body">
             <h5 class="card-title"><?= $member['email']; ?></h5>
             <?php
-            if ($member['jenis_kelamin'] == 1) {
+            if ($member['jenis_kelamin'] == 0) {
+                $member['x'] = 'Belum Diatur';
+            } elseif ($member['jenis_kelamin'] == 1) {
                 $member['x'] = 'Laki-Laki';
             } else {
                 $member['x'] = 'Perempuan';
             }
             ?>
-            <p class="card-text"><small class="text-muted">No. Telp : <?= $member['no_telp']; ?></small></p>
+            <p class="card-text"><small class="text-muted">Tanggal Lahir : <?= (new DateTime($member['tgl_lahir']))->format('d F Y'); ?><br>Alamat : <?= $member['alamat']; ?><br>Kota : <?= $member['kota']; ?></small></p>
             <p class="card-text"><small class="text-muted">Jenis Kelamin : <?= $member['x']; ?></small></p>
-            <p class="card-text"><small class="text-muted">Alamat : <?= $member['alamat']; ?></small></p>
-            <p class="card-text"><small class="text-muted">Tanggal Lahir : <?= $member['tgl_lahir']; ?></small></p>
             <p class="card-text"><small class="text-muted">Bergabung sejak <?= (new DateTime($member['date_created']))->format('F d, Y'); ?></p>
         </div>
     </div>
