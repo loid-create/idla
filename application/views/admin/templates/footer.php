@@ -58,6 +58,17 @@
 <!-- Page level custom scripts -->
 <script src="<?= base_url('assets/'); ?>js/demo/datatables-demo.js"></script>
 
+<script>
+    $(document).ready(function() {
+        $('#dataMember').DataTable();
+    });
+    $(document).ready(function() {
+        $('#dataDokter').DataTable();
+    });
+    $(document).ready(function() {
+        $('#dataKlinik').DataTable();
+    });
+</script>
 </body>
 
 </html>

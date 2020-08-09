@@ -28,13 +28,13 @@
     </div>
 
     <li class="nav-item">
-        <a href="<?= base_url('member/'); ?>" class="nav-link">
+        <a href="<?= base_url('member/ajukan'); ?>" class="nav-link">
             <i class="fas fa-fw fa-bars"></i>
             <span>Ajukan Jadwal Konsultasi</span></a>
     </li>
 
     <li class="nav-item">
-        <a href="<?= base_url('member/'); ?>" class="nav-link">
+        <a href="<?= base_url('member/konsultasi'); ?>" class="nav-link">
             <i class="fas fa-fw fa-inbox"></i>
             <span>Konsultasi Dengan Dokter</span></a>
     </li>
@@ -46,7 +46,7 @@
     </li>
 
     <li class="nav-item">
-        <a href="<?= base_url('member/'); ?>" class="nav-link">
+        <a href="<?= base_url('member/medical_record'); ?>" class="nav-link">
             <i class="fas fa-fw fa-user-md"></i>
             <span>Medical Record Peliharaan</span></a>
     </li>

@@ -46,5 +46,17 @@ class Admin extends CI_Controller
 
     public function kelola_info()
     {
+        $ambil = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['title'] = 'Eldora Vet Clinic - Kelola Info Klinik';
+        $data['admin'] =  $ambil;
+
+        $hasil = $this->db->get('peliharaan')->result_array();
+        $data['infoclinic'] = $hasil;
+
+        $this->load->view('admin/templates/header', $data);
+        $this->load->view('admin/templates/sidebar', $data);
+        $this->load->view('admin/templates/topbar', $data);
+        $this->load->view('admin/kelola', $data);
+        $this->load->view('admin/templates/footer');
     }
 }
