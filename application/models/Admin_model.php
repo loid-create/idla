@@ -42,12 +42,6 @@ class Admin_model extends CI_Model
         $this->db->update('peliharaan', $data);
     }
 
-    public function deleteInfo($id)
-    {
-        $this->db->where('id_info', $id);
-        $this->db->delete('info');
-    }
-
     public function deleteUsers($id)
     {
         $this->db->where('id', $id);

@@ -53,7 +53,7 @@
                             <td><?= $dd['alamat']; ?></td>
                             <td><?= $dd['kota']; ?></td>
                             <td><?= $dd['date_created']; ?></td>
-                            <td><a href="<?= base_url() . "member/hapus_data_pet/" . $dd['id']; ?>" class="fas fa-fw fa-trash"></a></td>
+                            <td><a href="<?= base_url() . "admin/hapus_data_dokter/" . $dd['id']; ?>" class="fas fa-fw fa-trash"></a></td>
                         </tr>
                         <?php $i++; ?>
                     <?php endforeach; ?>

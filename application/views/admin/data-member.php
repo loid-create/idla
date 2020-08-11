@@ -53,7 +53,7 @@
                             <td><?= $dm['alamat']; ?></td>
                             <td><?= $dm['kota']; ?></td>
                             <td><?= $dm['date_created']; ?></td>
-                            <td><a href="<?= base_url() . "member/hapus_data_pet/" . $dm['id']; ?>" class="fas fa-fw fa-trash"></a></td>
+                            <td><a href="<?= base_url() . "admin/hapus_data_member/" . $dm['id']; ?>" class="fas fa-fw fa-trash"></a></td>
                         </tr>
                         <?php $i++; ?>
                     <?php endforeach; ?>

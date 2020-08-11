@@ -70,13 +70,20 @@ class Admin extends CI_Controller
         $this->load->view('admin/templates/footer');
     }
 
-    public function hapus_data_users()
+    public function hapus_data_member()
     {
-        $this->load->model('Auth_model', 'del_pet');
         $id = $this->uri->segment(3);
-        $this->admod->deletePet($id);
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"><strong>Data User kamu berhasil dihapus !</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-        redirect('member/data_pet');
+        $this->admod->deleteUsers($id);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"><strong>Data Member kamu berhasil dihapus !</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+        redirect('admin/data_member');
+    }
+
+    public function hapus_data_dokter()
+    {
+        $id = $this->uri->segment(3);
+        $this->admod->deleteUsers($id);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"><strong>Data Member kamu berhasil dihapus !</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+        redirect('admin/data_dokter');
     }
 
     public function data_dokter()
