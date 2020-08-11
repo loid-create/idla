@@ -17,6 +17,7 @@
                         <th>Ras Peliharaan</th>
                         <th>Jenis Peliharaan</th>
                         <th>Jenis Kelamin</th>
+                        <th>Tanggal Diubah</th>
                         <th>Tanggal Ditambah</th>
                         <th>Aksi</th>
                     </tr>
@@ -33,13 +34,13 @@
                         ?>
                         <?php
                         if ($p['jk'] == 0) {
-                            $p['jk_pet'] = 'Perempuan';
-                        } elseif ($p['jk'] == 1) {
-                            $p['jk_pet'] = 'Laki-Laki';
-                        } elseif ($p['jk'] == 2) {
                             $p['jk_pet'] = 'Betina';
-                        } else {
+                        } elseif ($p['jk'] == 1) {
                             $p['jk_pet'] = 'Jantan';
+                        } elseif ($p['jk'] == 2) {
+                            $p['jk_pet'] = 'Neutered (Betina Steril)';
+                        } else {
+                            $p['jk_pet'] = 'Spaying (Jantan Steril)';
                         }
                         ?>
                         <tr>
@@ -48,6 +49,7 @@
                             <td><?= $p['ras_pet']; ?></td>
                             <td><?= $p['x_pet']; ?></td>
                             <td><?= $p['jk_pet']; ?></td>
+                            <td><?= $p['date_modified']; ?></td>
                             <td><?= $p['date_created']; ?></td>
                             <td><a href="#" class="fas fa-fw fa-edit" data-toggle="modal" data-target="#editPeliharaan<?= $p['id']; ?>"></a> | <a href="<?= base_url() . "member/hapus_data_pet/" . $p['id']; ?>" class="fas fa-fw fa-trash"></a></td>
                         </tr>
@@ -75,6 +77,7 @@
                 </button>
             </div>
             <form class="user" method="POST" action="<?= base_url('member/data_pet'); ?>">
+                <input type="hidden" class="form-control" id="userid" name="userid" value="<?= $member['id']; ?>" readonly>
                 <div class="modal-body">
                     <div class="form-group row">
                         <label for="namapet" class="col-sm-4 col-form-label">Nama Peliharaan</label>
@@ -94,6 +97,7 @@
                         <label for="jp" class="col-sm-4 col-form-label">Jenis Peliharaan</label>
                         <div class="col-sm-8">
                             <select name="jp" id="jp" class="form-control">
+                                <option>- Belum Dipilih -</option>
                                 <option value="1">Kucing</option>
                                 <option value="0">Anjing</option>
                             </select>
@@ -103,10 +107,11 @@
                         <label for="jk" class="col-sm-4 col-form-label">Jenis Kelamin</label>
                         <div class="col-sm-8">
                             <select name="jk" id="jk" class="form-control">
-                                <option value="0">Perempuan</option>
-                                <option value="1">Laki-Laki</option>
-                                <option value="2">Betina</option>
-                                <option value="3">Jantan</option>
+                                <option>- Belum Dipilih -</option>
+                                <option value="0">Betina</option>
+                                <option value="1">Jantan</option>
+                                <option value="2">Neutered (Betina Steril)</option>
+                                <option value="3">Spaying (Jantan Steril)</option>
                             </select>
                         </div>
                     </div>
@@ -149,41 +154,24 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <?php
-                            if ($p['jenis_pet'] == 1) {
-                                $p['x_pet'] = 'Kucing';
-                            } else {
-                                $p['x_pet'] = 'Anjing';
-                            }
-                            ?>
                             <label for="jp" class="col-sm-4 col-form-label">Jenis Peliharaan</label>
                             <div class="col-sm-8">
                                 <select name="jp" id="jp" class="form-control">
-                                    <option value="<?= $p['jenis_pet']; ?>"><?= $p['x_pet']; ?></option>
+                                    <option>- Belum Dipilih -</option>
                                     <option value="1">Kucing</option>
                                     <option value="0">Anjing</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <?php
-                            if ($p['jk'] == 0) {
-                                $p['jk_pet'] = 'Perempuan';
-                            } elseif ($p['jk'] == 1) {
-                                $p['jk_pet'] = 'Laki-Laki';
-                            } elseif ($p['jk'] == 2) {
-                                $p['jk_pet'] = 'Betina';
-                            } else {
-                                $p['jk_pet'] = 'Jantan';
-                            }
-                            ?>
                             <label for="jk" class="col-sm-4 col-form-label">Jenis Kelamin</label>
                             <div class="col-sm-8">
                                 <select name="jk" id="jk" class="form-control">
-                                    <option value="0">Perempuan</option>
-                                    <option value="1">Laki-Laki</option>
-                                    <option value="2">Betina</option>
-                                    <option value="3">Jantan</option>
+                                    <option>- Belum Dipilih -</option>
+                                    <option value="0">Betina</option>
+                                    <option value="1">Jantan</option>
+                                    <option value="2">Neutered (Betina Steril)</option>
+                                    <option value="3">Spaying (Jantan Steril)</option>
                                 </select>
                             </div>
                         </div>

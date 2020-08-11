@@ -94,7 +94,12 @@ class Member extends CI_Controller
         $data['title'] = 'Eldora Vet Clinic - Data Peliharaan';
         $data['member'] = $ambil;
 
-        $hasil = $this->db->get('peliharaan')->result_array();
+        ///$this->db->select('*')->where('role_id', '2')->get('user')->result_array();
+        //$cek1 = $this->db->select('*')->where('id', ['id' => $this->session->userdata('id')])->get('user')->result_array();
+        //$cek2 = $this->db->select('*')->where('user_id', ['user_id' => $this->session->userdata('user_id')])->get('peliharaan')->result_array();
+
+        ///$hasil = $this->db->get('peliharaan')->result_array();
+        $hasil = $this->db->select("user.id, peliharaan.id, peliharaan.user_id, peliharaan.nama_pet, peliharaan.ras_pet, peliharaan.jenis_pet, peliharaan.jk, peliharaan.date_created, peliharaan.date_modified")->from('user')->join('peliharaan', 'user.id = peliharaan.user_id')->where("user.email", $this->session->userdata('email'))->get()->result_array();
         $data['pet'] = $hasil;
 
         $this->form_validation->set_rules('namapet', 'Nama Pet', 'required|trim|is_unique[peliharaan.nama_pet]', [
@@ -118,21 +123,19 @@ class Member extends CI_Controller
 
     public function hapus_data_pet()
     {
-        $this->load->model('Auth_model', 'del_pet');
         $id = $this->uri->segment(3);
-        $this->del_pet->deletePet($id);
+        $this->authen->deletePet($id);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"><strong>Data Peliharaan kamu berhasil dihapus !</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
         redirect('member/data_pet');
     }
 
     public function edit_data_pet()
     {
-        $this->load->model('Auth_model', 'c_pet');
         $this->form_validation->set_rules('namapet', 'Nama Peliharaan', 'required|trim');
         $this->form_validation->set_rules('ras', 'Ras Peliharaan', 'required|trim');
 
         if ($this->form_validation->run() == true) {
-            $this->c_pet->editPet();
+            $this->authen->editPet();
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"><strong>Data Peliharaan kamu berhasil diubah !</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
             redirect('member/data_pet');
         }

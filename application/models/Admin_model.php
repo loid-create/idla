@@ -4,6 +4,24 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Admin_model extends CI_Model
 {
 
+    public function registerDokter()
+    {
+        $email = $this->input->post('email', true);
+        $jk = $this->input->post('jk', true);
+        $data = [
+            'nama' => htmlspecialchars($this->input->post('name', true)),
+            'email' => htmlspecialchars($email),
+            'gambar' => 'doctor.png',
+            'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
+            'jenis_kelamin' => $jk,
+            'role_id' => 3,
+            'is_active' => 1,
+            'tgl_lahir' => date('Y-m-d'),
+            'date_created' => date('Y-m-d')
+        ];
+        $this->db->insert('user', $data);
+    }
+
     public function editPet()
     {
         $id = $this->input->post('id', true);
@@ -28,5 +46,11 @@ class Admin_model extends CI_Model
     {
         $this->db->where('id_info', $id);
         $this->db->delete('info');
+    }
+
+    public function deleteUsers($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('user');
     }
 }

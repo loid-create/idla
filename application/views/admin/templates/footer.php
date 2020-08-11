@@ -68,6 +68,12 @@
     $(document).ready(function() {
         $('#dataKlinik').DataTable();
     });
+    $(document).ready(function() {
+        $('#dataTentang').DataTable();
+    });
+    $(document).ready(function() {
+        $('#dataDr').DataTable();
+    });
 </script>
 </body>
 

@@ -17,6 +17,13 @@
             } else {
                 $member['x'] = 'Perempuan';
             }
+
+            if ($member['alamat'] == '') {
+                $member['alamat'] = 'Belum Diatur';
+            }
+            if ($member['kota'] == '') {
+                $member['kota'] = 'Belum Diatur';
+            }
             ?>
             <p class="card-text"><small class="text-muted">Tanggal Lahir : <?= (new DateTime($member['tgl_lahir']))->format('d F Y'); ?><br>Alamat : <?= $member['alamat']; ?><br>Kota : <?= $member['kota']; ?></small></p>
             <p class="card-text"><small class="text-muted">Jenis Kelamin : <?= $member['x']; ?></small></p>
