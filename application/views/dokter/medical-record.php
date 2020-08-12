@@ -12,9 +12,10 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Kucing</th>
+                        <th>Peliharaan</th>
                         <th>Nama Pemilik</th>
-                        <th>Ras</th>
+                        <th>Jenis</th>
+                        <th>Dokter</th>
                         <th>Tanggal Konsultasi</th>
                         <th>Hasil Diagnosa</th>
                     </tr>
@@ -23,33 +24,37 @@
 
                         <tr>
                             <td>1</td>
-                            <td>Sapi</td>
+                            <td>Sapi - Domestic (Spaying)</td>
                             <td>Agung Handoko</td>
-                            <td>Domestic</td>
+                            <td>Kucing</td>
+                            <td>drh.Ari Ramadhan</td>
                             <td>12-08-2020</td>
                             <td>Terkena gejala kutu bla bla bla bla</td>
                         </tr>
                         <tr>
                             <td>1</td>
-                            <td>Sapi</td>
+                            <td>Sapi - Domestic (Spaying)</td>
                             <td>Agung Handoko</td>
-                            <td>Domestic</td>
+                            <td>Kucing</td>
+                            <td>drh.Ari Ramadhan</td>
                             <td>12-08-2020</td>
                             <td>Terkena gejala kutu bla bla bla bla</td>
                         </tr>
                         <tr>
                             <td>1</td>
-                            <td>Sapi</td>
+                            <td>Sapi - Domestic (Spaying)</td>
                             <td>Agung Handoko</td>
-                            <td>Domestic</td>
+                            <td>Kucing</td>
+                            <td>drh.Ari Ramadhan</td>
                             <td>12-08-2020</td>
                             <td>Terkena gejala kutu bla bla bla bla</td>
                         </tr>
                         <tr>
                             <td>1</td>
-                            <td>Sapi</td>
+                            <td>Sapi - Domestic (Spaying)</td>
                             <td>Agung Handoko</td>
-                            <td>Domestic</td>
+                            <td>Kucing</td>
+                            <td>drh.Ari Ramadhan</td>
                             <td>12-08-2020</td>
                             <td>Terkena gejala kutu bla bla bla bla</td>
                         </tr>

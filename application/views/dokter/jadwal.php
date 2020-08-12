@@ -7,7 +7,7 @@
     <div class="card bg-light mb-3">
         <div class="card-body text-center py-5">
             <h5 class="card-title">Jadwal Masih Kosong</h5>
-            <p class="card-text"><small class="text-muted">Semua jaadwal janji temu akan ditampilkan disini</small></p>
+            <p class="card-text"><small class="text-muted">Semua jadwal janji temu akan ditampilkan disini</small></p>
         </div>
     </div>
 
