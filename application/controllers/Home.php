@@ -69,8 +69,12 @@ class Home extends CI_Controller
 				//cek password
 				if (password_verify($password, $masuk['password'])) {
 					$data = [
+						'id' => $masuk['id'],
+						'nama' => $masuk['nama'],
 						'email' => $masuk['email'],
-						'role_id' => $masuk['role_id']
+						'role_id' => $masuk['role_id'],
+						'status' => $masuk['status'],
+						'date_created' => $masuk['date_created']
 					];
 					//session
 					$this->session->set_userdata($data);
@@ -100,6 +104,7 @@ class Home extends CI_Controller
 	}
 	public function logout()
 	{
+		$this->session->unset_userdata('id');
 		$this->session->unset_userdata('email');
 		$this->session->unset_userdata('role_id');
 		redirect('home');

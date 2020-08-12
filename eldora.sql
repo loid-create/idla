@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 11, 2020 at 09:36 AM
+-- Generation Time: Aug 12, 2020 at 09:27 AM
 -- Server version: 10.3.15-MariaDB
 -- PHP Version: 7.3.6
 
@@ -25,6 +25,37 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `algoritma`
+--
+
+CREATE TABLE `algoritma` (
+  `id` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `hasil` int(11) NOT NULL,
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chat`
+--
+
+CREATE TABLE `chat` (
+  `id` int(11) NOT NULL,
+  `sender_id` int(11) NOT NULL,
+  `receiver_id` int(11) NOT NULL,
+  `message` text NOT NULL,
+  `attachment_name` text NOT NULL,
+  `file_ext` text NOT NULL,
+  `mime_type` text NOT NULL,
+  `message_date` text NOT NULL,
+  `ip_address` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `info`
 --
 
@@ -41,6 +72,40 @@ CREATE TABLE `info` (
 
 INSERT INTO `info` (`id_info`, `alamat`, `notelp`, `email`) VALUES
 (1, 'Jl. Gunung Krakatau No.261, Pulo Brayan Darat I, Kec. Medan Tim., Kota Medan, Sumatera Utara 20236', '+628126494668', 'example@abc.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jadwal_dokter`
+--
+
+CREATE TABLE `jadwal_dokter` (
+  `id` int(11) NOT NULL,
+  `dokterId` int(11) NOT NULL,
+  `durasi` int(11) NOT NULL COMMENT 'satuan menit',
+  `isBooked` tinyint(1) NOT NULL DEFAULT 0,
+  `date` date NOT NULL,
+  `startAt` time NOT NULL,
+  `endAt` time NOT NULL,
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `janji_temu`
+--
+
+CREATE TABLE `janji_temu` (
+  `id` int(11) NOT NULL,
+  `waktu` datetime NOT NULL,
+  `userId` int(11) NOT NULL,
+  `dokterId` int(11) NOT NULL,
+  `jadwalId` int(11) NOT NULL,
+  `durasi` int(11) NOT NULL COMMENT 'satuan menit',
+  `konfirmasi` tinyint(1) NOT NULL DEFAULT 0,
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -127,6 +192,7 @@ CREATE TABLE `user` (
   `alamat` varchar(256) NOT NULL,
   `kota` varchar(100) NOT NULL,
   `role_id` int(11) NOT NULL,
+  `status` int(2) NOT NULL,
   `is_active` int(1) NOT NULL,
   `date_created` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -135,16 +201,15 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `nama`, `email`, `gambar`, `password`, `tgl_lahir`, `no_telp`, `jenis_kelamin`, `alamat`, `kota`, `role_id`, `is_active`, `date_created`) VALUES
-(1, 'Aldi Yulio', 'aldi@member.com', 'aldi.jpg', '$2y$10$kqwrBN2Mf8MhvURpzzGP/eVSIs838fXj3HY0m6J0ffmndztWcZkX.', '1993-07-30', '081260425831', 1, 'Jl. Gunung Krakatau No.261, Pulo Brayan Darat I, Kec. Medan Timur', 'Medan, Sumatera Utara', 2, 1, '2020-08-05'),
-(2, 'Admin Clinic', 'admin@admin.com', 'admin.png', '$2y$10$s0MlNfEK/aVGPV8szaKRfeYPSCdSBmhEuL9C6.W0PXbVhgP5.jj8G', '1993-07-30', '', 0, '', '', 1, 1, '2020-08-05'),
-(3, 'Dokter Clinic', 'eldora@dokter.com', 'doctor.png', '$2y$10$J5xy/v0LO8iBc3jMCcU7K.ATgnewq6BHscZ6ux.sK.HL7t2cm6ed2', '1993-07-30', '', 0, '', '', 3, 1, '2020-08-05'),
-(4, 'Member Kedua', 'member2@member.com', 'aldi.jpg', '$2y$10$9n7XpF3UDtBXiIOtCD0.deKT7IF6.w70zZ4fvIonHvuwGG7KSxzaq', '1993-07-30', '081260425831', 1, 'Jl a', 'Medan, Sumatera Utara', 2, 1, '2020-08-05'),
-(5, 'Aldi Y', 'member@member.com', 'member.png', '$2y$10$uDozIlg8AQyxZmUm/LOvZ.ct0TTnAoHIGUXTo8gYhspCbNlOkcDHC', '1993-07-30', '08123456789', 1, 'Jl Sana', 'Medan, Sumatera Utara', 2, 1, '2020-08-05'),
-(6, 'Agung', 'agunghandoko112@gmail.com', '4631d9f26a6ea6fa75d0ec6745218178.jpg', '$2y$10$8EEWn0EsN0AtFPnJFRcvgOd9MKPrNQxlttWuOBqqxbMOIiTMza5Ea', '1997-07-14', '0895611507489', 1, 'Jl Tuasan', 'Medan, Sumatera Utara', 2, 1, '2020-08-09'),
-(7, 'Keanu Alif', 'keanu@member.com', 'member.png', '$2y$10$pDcOnGgxo/Y4VCHmgMAwp.CPvHiEVkRR/wZNAV0jMvqONBulXCwR6', '2020-08-09', '', 0, '', '', 2, 1, '2020-08-09'),
-(8, 'Eldora Dokter', 'eldora2@dokter.com', 'doctor.png', '$2y$10$loFSxV9KvUWEI10XO9StVOVZw0oMW5qNccGWk8FakPRSovpUe5T4m', '2020-08-10', '', 1, '', '', 3, 1, '2020-08-10'),
-(9, 'eldora tiga', 'eldora3@dokter.com', 'doctor.png', '$2y$10$CfdQQs7NS8Y9b4kNpQ6Jw.2jYqTke.wAP4SG2DY.84jG3p7WhxcTi', '2020-08-10', '', 1, '', '', 3, 1, '2020-08-10');
+INSERT INTO `user` (`id`, `nama`, `email`, `gambar`, `password`, `tgl_lahir`, `no_telp`, `jenis_kelamin`, `alamat`, `kota`, `role_id`, `status`, `is_active`, `date_created`) VALUES
+(1, 'Aldi Yulio', 'aldi@member.com', 'aldi.jpg', '$2y$10$kqwrBN2Mf8MhvURpzzGP/eVSIs838fXj3HY0m6J0ffmndztWcZkX.', '1993-07-30', '081260425831', 1, 'Jl. Gunung Krakatau No.261, Pulo Brayan Darat I, Kec. Medan Timur', 'Medan, Sumatera Utara', 2, 1, 1, '2020-08-05'),
+(2, 'Admin Clinic', 'admin@admin.com', 'admin.png', '$2y$10$s0MlNfEK/aVGPV8szaKRfeYPSCdSBmhEuL9C6.W0PXbVhgP5.jj8G', '1993-07-30', '', 1, '', '', 1, 1, 1, '2020-08-05'),
+(3, 'Dokter Clinic', 'eldora@dokter.com', 'doctor.png', '$2y$10$J5xy/v0LO8iBc3jMCcU7K.ATgnewq6BHscZ6ux.sK.HL7t2cm6ed2', '1993-07-30', '', 1, '', '', 3, 1, 1, '2020-08-05'),
+(4, 'Member Kedua', 'member2@member.com', 'aldi.jpg', '$2y$10$9n7XpF3UDtBXiIOtCD0.deKT7IF6.w70zZ4fvIonHvuwGG7KSxzaq', '1993-07-30', '081260425831', 1, 'Jl a', 'Medan, Sumatera Utara', 2, 1, 1, '2020-08-05'),
+(5, 'Aldi Y', 'member@member.com', 'member.png', '$2y$10$uDozIlg8AQyxZmUm/LOvZ.ct0TTnAoHIGUXTo8gYhspCbNlOkcDHC', '1993-07-30', '08123456789', 1, 'Jl Sana', 'Medan, Sumatera Utara', 2, 1, 1, '2020-08-05'),
+(6, 'Agung', 'agunghandoko112@gmail.com', '4631d9f26a6ea6fa75d0ec6745218178.jpg', '$2y$10$8EEWn0EsN0AtFPnJFRcvgOd9MKPrNQxlttWuOBqqxbMOIiTMza5Ea', '1997-07-14', '0895611507489', 1, 'Jl Tuasan', 'Medan, Sumatera Utara', 2, 1, 1, '2020-08-09'),
+(8, 'Eldora Dokter', 'eldora2@dokter.com', 'doctor.png', '$2y$10$loFSxV9KvUWEI10XO9StVOVZw0oMW5qNccGWk8FakPRSovpUe5T4m', '2020-08-10', '', 1, '', '', 3, 1, 1, '2020-08-10'),
+(10, 'Monica Magdalena', 'mmhutapea50@gmail.com', 'member.png', '$2y$10$/NSjlak0XDtRaV51BivzseMJunePUp86v4XOIVPk/7r/OjWq0oM4S', '1998-02-06', '082161983906', 2, 'JL. KERUNTUNG NO.34 A', 'Medan, Sumatera Utara', 2, 1, 1, '2020-08-12');
 
 -- --------------------------------------------------------
 
@@ -171,10 +236,36 @@ INSERT INTO `user_role` (`id`, `role`) VALUES
 --
 
 --
+-- Indexes for table `algoritma`
+--
+ALTER TABLE `algoritma`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `chat`
+--
+ALTER TABLE `chat`
+  ADD PRIMARY KEY (`id`,`sender_id`,`receiver_id`),
+  ADD KEY `FK_Chat_Sender` (`sender_id`),
+  ADD KEY `FK_Chat_Receiver` (`receiver_id`);
+
+--
 -- Indexes for table `info`
 --
 ALTER TABLE `info`
   ADD PRIMARY KEY (`id_info`);
+
+--
+-- Indexes for table `jadwal_dokter`
+--
+ALTER TABLE `jadwal_dokter`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `janji_temu`
+--
+ALTER TABLE `janji_temu`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `klinik`
@@ -212,10 +303,34 @@ ALTER TABLE `user_role`
 --
 
 --
+-- AUTO_INCREMENT for table `algoritma`
+--
+ALTER TABLE `algoritma`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `chat`
+--
+ALTER TABLE `chat`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `info`
 --
 ALTER TABLE `info`
   MODIFY `id_info` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `jadwal_dokter`
+--
+ALTER TABLE `jadwal_dokter`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
+-- AUTO_INCREMENT for table `janji_temu`
+--
+ALTER TABLE `janji_temu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `klinik`
@@ -239,7 +354,7 @@ ALTER TABLE `tentang`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `user_role`
@@ -250,6 +365,13 @@ ALTER TABLE `user_role`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `chat`
+--
+ALTER TABLE `chat`
+  ADD CONSTRAINT `FK_Chat_Receiver` FOREIGN KEY (`receiver_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_Chat_Sender` FOREIGN KEY (`sender_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `peliharaan`

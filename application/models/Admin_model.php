@@ -15,6 +15,7 @@ class Admin_model extends CI_Model
             'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
             'jenis_kelamin' => $jk,
             'role_id' => 3,
+            'status' => 1,
             'is_active' => 1,
             'tgl_lahir' => date('Y-m-d'),
             'date_created' => date('Y-m-d')

@@ -57,6 +57,12 @@
 <!-- Page level custom scripts -->
 <script src="<?= base_url('assets/'); ?>js/demo/datatables-demo.js"></script>
 
+<script src="<?= base_url('assets/'); ?>chat/chat.js"></script>
+<script src="<?= base_url('assets/'); ?>components/PACE/pace.min.js"></script>
+<script src="<?= base_url('assets/'); ?>components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="<?= base_url('assets/'); ?>components/fastclick/lib/fastclick.js"></script>
+<script src="<?= base_url('assets/'); ?>dist/js/adminlte.min.js"></script>
+
 <script>
     $('.custom-file-input').on('change', function() {
         let fileName = $(this).val().split('\\').pop();
@@ -66,6 +72,14 @@
     $(document).ready(function() {
         $('#dataPet').DataTable();
     });
+
+    $(document).ready(function() {
+        $('.sidebar-menu').tree()
+    })
+
+    $(document).ajaxStart(function() {
+        Pace.restart();
+    })
 </script>
 </body>
 
