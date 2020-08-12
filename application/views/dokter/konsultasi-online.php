@@ -10,7 +10,7 @@
                 <!-- DIRECT CHAT -->
                 <div class="box box-warning direct-chat direct-chat-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title" id="ReciverName_txt"><?= $chatTitle; ?></h3>
+                        <h3 class="box-title" id="ReciverName_txt"></h3>
 
                         <div class="box-tools pull-right">
                             <span data-toggle="tooltip" title="Clear Chat" class="ClearChat"><i class="fa fa-comments"></i></span>
@@ -21,36 +21,32 @@
                         <!-- Conversations are loaded here -->
                         <div class="direct-chat-messages" id="content">
                             <!-- /.direct-chat-msg -->
-
                             <div id="dumppy"></div>
-
                         </div>
                         <!--/.direct-chat-messages-->
 
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer">
-                        <form action="<?php base_url('dokter/send_text_message'); ?>" method="post">
-                            <div class="input-group">
-                                <?php
-                                $obj = &get_instance();
-                                $obj->load->model('UserModel');
-                                $profile_url = $obj->UserModel->PictureUrl();
-                                $user = $obj->UserModel->GetUserData();
-                                ?>
+                        <!--<form action="#" method="post">-->
+                        <div class="input-group">
+                            <?php
+                            $obj = &get_instance();
+                            $obj->load->model('UserModel');
+                            $profile_url = $obj->UserModel->PictureUrl();
+                            $user = $obj->UserModel->GetUserData();
+                            ?>
 
-                                <input type="hidden" id="Sender_Name" value="<?= $user['nama']; ?>">
-                                <input type="hidden" id="Sender_ProfilePic" value="<?= $profile_url; ?>">
+                            <input type="hidden" id="Sender_Name" name="Sender_Name" value="<?= $user['nama']; ?>">
+                            <input type="hidden" id="Sender_ProfilePic" value="<?= $profile_url; ?>">
 
-                                <input type="hidden" id="ReciverId_txt">
-                                <input type="text" name="message" placeholder="Type Message ..." class="form-control message">
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn btn-success btn-flat btnSend" id="nav_down">Send</button>
-                                    <div class="fileDiv btn btn-info btn-flat"> <i class="fa fa-upload"></i>
-                                        <input type="file" name="file" class="upload_attachmentfile" /></div>
-                                </span>
-                            </div>
-                        </form>
+                            <input type="hidden" id="ReciverId_txt" name="ReciverId_txt">
+                            <input type="text" id="message" name="message" placeholder="Type Message ..." class="form-control message">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-success btn-flat btnSend" id="nav_down">Send</button>
+                            </span>
+                        </div>
+                        <!--</form>-->
                     </div>
                     <!-- /.box-footer-->
                 </div>
@@ -64,7 +60,7 @@
                 <!-- USERS LIST -->
                 <div class="box box-danger">
                     <div class="box-header with-border">
-                        <h3 class="box-title"><?= $strTitle; ?></h3>
+                        <h3 class="box-title"></h3>
 
                         <div class="box-tools pull-right">
                             <span class="label label-danger"><?= count($vendorslist); ?> <?= $strsubTitle; ?></span>
@@ -130,3 +126,4 @@
     </div>
 </div>
 <!-- Modal -->
+<script src="<?= base_url('assets/'); ?>chat/chat.js"></script>

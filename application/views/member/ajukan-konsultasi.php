@@ -21,7 +21,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <p class="card-text mb-0 font-weight-bold">drh. Ari Ramadhan</p>
-                            <p class="card-text"><small class="text-muted">Dokter Umum</small></p>
+                            <p class="card-text"><small class="text-muted">Dokter Hewan</small></p>
                         </div>
                         <div class="col-md-6 text-right">
                             <p class="card-text mb-0"><small class="text-muted">Jasa Konsultasi</small></p>

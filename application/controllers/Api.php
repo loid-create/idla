@@ -100,7 +100,7 @@ class Api extends CI_Controller
 		$response['meta'] = ["message" => "ini message"];
 		$response['data'] = $this->getUserByToken();
 
-        $this->output->set_status_header(200)->set_content_type('application/json')->set_output(json_encode($response));
+		$this->output->set_status_header(200)->set_content_type('application/json')->set_output(json_encode($response));
 	}
 
 	public function daftar()
@@ -125,7 +125,7 @@ class Api extends CI_Controller
 			$response['meta'] = ["message" => "Kamu berhasil membuat akun, silahkan login!"];
 			$response['data'] = $user;
 		}
-        $this->output->set_status_header(200)->set_content_type('application/json')->set_output(json_encode($response));
+		$this->output->set_status_header(200)->set_content_type('application/json')->set_output(json_encode($response));
 	}
 
 	public function masuk()
@@ -141,26 +141,30 @@ class Api extends CI_Controller
 			$response = $this->_login();
 		}
 		$this->output->set_status_header(200)->set_content_type('application/json')->set_output(json_encode($response));
-
 	}
 
 	private function generateToken($user)
 	{
-		$ciphering = "AES-128-CTR"; 
-		$iv_length = openssl_cipher_iv_length($ciphering); 
-		$options = 0; 
-		  
+		$ciphering = "AES-128-CTR";
+		$iv_length = openssl_cipher_iv_length($ciphering);
+		$options = 0;
+
 		// Non-NULL Initialization Vector for encryption 
-		$encryption_iv = '1234567891011121'; 
-		  
+		$encryption_iv = '1234567891011121';
+
 		// Store the encryption key 
-		$encryption_key = "eldoraKey"; 
+		$encryption_key = "eldoraKey";
 
 		$jwt = json_encode((object)$user);
-		  
+
 		// Use openssl_encrypt() function to encrypt the data 
-		$encryption = openssl_encrypt($jwt, $ciphering, 
-		            $encryption_key, $options, $encryption_iv); 
+		$encryption = openssl_encrypt(
+			$jwt,
+			$ciphering,
+			$encryption_key,
+			$options,
+			$encryption_iv
+		);
 		return $encryption;
 	}
 
@@ -171,24 +175,29 @@ class Api extends CI_Controller
 			throw new Exception("Error Token Is Required!");
 		}
 		$dataToken = $header['Authorization'];
-		
+
 		$token = explode(' ', $dataToken)[1];
-		$ciphering = "AES-128-CTR"; 
-		$iv_length = openssl_cipher_iv_length($ciphering); 
-		$options = 0; 
-		  
+		$ciphering = "AES-128-CTR";
+		$iv_length = openssl_cipher_iv_length($ciphering);
+		$options = 0;
+
 		// Non-NULL Initialization Vector for encryption 
-		$decryption_iv = '1234567891011121'; 
-		  
+		$decryption_iv = '1234567891011121';
+
 		// Store the encryption key 
-		$decryption_key = "eldoraKey"; 
+		$decryption_key = "eldoraKey";
 
-		$decryption=openssl_decrypt ($token, $ciphering,  
-        $decryption_key, $options, $decryption_iv);
+		$decryption = openssl_decrypt(
+			$token,
+			$ciphering,
+			$decryption_key,
+			$options,
+			$decryption_iv
+		);
 
-        $decryption = json_decode($decryption);
+		$decryption = json_decode($decryption);
 
-        return $decryption;
+		return $decryption;
 	}
 
 	private function _login()
@@ -247,109 +256,108 @@ class Api extends CI_Controller
 	}
 
 
-	public function my_profile() {
+	public function my_profile()
+	{
 		$user = $this->getUserByToken();
-	    $ambil = $this->db->get_where('user', ['email' => $user->email])->row_array();
+		$ambil = $this->db->get_where('user', ['email' => $user->email])->row_array();
 
-        $response['success'] = 1;
+		$response['success'] = 1;
 		$response['meta'] = ["message" => "Get informasi akun kamu berhasil."];
 		$response['data'] = $ambil;
 
-        $this->output->set_status_header(200)->set_content_type('application/json')->set_output(json_encode($response));
+		$this->output->set_status_header(200)->set_content_type('application/json')->set_output(json_encode($response));
 	}
 
 	public function edit_profile()
 	{
 		$user = $this->getUserByToken();
-	    $ambil = $this->db->get_where('user', ['email' => $user->email])->row_array();
+		$ambil = $this->db->get_where('user', ['email' => $user->email])->row_array();
 
-	    $this->form_validation->set_rules('name', 'Name', 'trim|required');
-	    $this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'trim|required');
-	    $this->form_validation->set_rules('no_telp', 'No Telp', 'trim|required');
-	    $this->form_validation->set_rules('jk', 'Jenis Kelamin', 'trim|required');
-	    $this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
-	    $this->form_validation->set_rules('kota', 'kota', 'trim|required');
+		$this->form_validation->set_rules('name', 'Name', 'trim|required');
+		$this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'trim|required');
+		$this->form_validation->set_rules('no_telp', 'No Telp', 'trim|required');
+		$this->form_validation->set_rules('jk', 'Jenis Kelamin', 'trim|required');
+		$this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
+		$this->form_validation->set_rules('kota', 'kota', 'trim|required');
 
-	    if ($this->form_validation->run() == false) {
-	        $response['success'] = 0;
+		if ($this->form_validation->run() == false) {
+			$response['success'] = 0;
 			$response['meta'] = ["message" => validation_errors()];
 			$response['data'] = [];
-	    } else {
-	        $ambil = $this->authen->editMemberApi($user);
-	        $response['success'] = 1;
+		} else {
+			$ambil = $this->authen->editMemberApi($user);
+			$response['success'] = 1;
 			$response['meta'] = ["message" => "Informasi akun kamu telah diubah."];
 			$response['data'] = $ambil;
-	    }
-	    $this->output->set_status_header(200)->set_content_type('application/json')->set_output(json_encode($response));
-
+		}
+		$this->output->set_status_header(200)->set_content_type('application/json')->set_output(json_encode($response));
 	}
 
 
 	public function janji()
 	{
 		$user = $this->getUserByToken();
-	    $ambil = $this->db->get_where('janji_temu', ['userId' => $user->id])->row_array();
+		$ambil = $this->db->get_where('janji_temu', ['userId' => $user->id])->row_array();
 
 		$response['success'] = 1;
 		$response['meta'] = ["message" => "janji temu get success"];
 		$response['data'] = $ambil;
 
-        $this->output->set_status_header(200)->set_content_type('application/json')->set_output(json_encode($response));
+		$this->output->set_status_header(200)->set_content_type('application/json')->set_output(json_encode($response));
 	}
 
 
 	public function ajukan()
 	{
 		$user = $this->getUserByToken();
-	    $ambil = $this->authen->tambahJanji($user->id);
+		$ambil = $this->authen->tambahJanji($user->id);
 
-	    if ($ambil) {
+		if ($ambil) {
 			$response['success'] = 1;
 			$response['meta'] = ["message" => "janji temu created success"];
 			$response['data'] = $ambil;
 			$httpCode = 200;
-	    } else {
-	    	$response['success'] = 0;
+		} else {
+			$response['success'] = 0;
 			$response['meta'] = ["message" => "janji temu sudah di booking"];
 			$response['data'] = [];
 			$httpCode = 400;
-	    }
-        $this->output->set_status_header($httpCode)->set_content_type('application/json')->set_output(json_encode($response));
-
+		}
+		$this->output->set_status_header($httpCode)->set_content_type('application/json')->set_output(json_encode($response));
 	}
 
 	public function edit_janji()
 	{
 		//POST url = /Api/edit_janji/:id
 		$user = $this->getUserByToken();
-	    $ambil = $this->authen->editJanji($user->id);
+		$ambil = $this->authen->editJanji($user->id);
 
-	    if ($ambil) {
+		if ($ambil) {
 			$response['success'] = 1;
 			$response['meta'] = ["message" => "janji temu updated success"];
 			$response['data'] = $ambil;
 			$httpCode = 200;
-	    } else {
-	    	$response['success'] = 0;
+		} else {
+			$response['success'] = 0;
 			$response['meta'] = ["message" => "janji temu sudah di booking"];
 			$response['data'] = [];
 			$httpCode = 400;
-	    }
+		}
 
-        $this->output->set_status_header($httpCode)->set_content_type('application/json')->set_output(json_encode($response));
+		$this->output->set_status_header($httpCode)->set_content_type('application/json')->set_output(json_encode($response));
 	}
 
 	public function delete_janji()
 	{
 		// GET url= /Api/delete_janji/:id
 		$user = $this->getUserByToken();
-	    $ambil = $this->authen->deleteJanji();
+		$ambil = $this->authen->deleteJanji();
 
 		$response['success'] = 1;
 		$response['meta'] = ["message" => "janji temu deleted success"];
 		$response['data'] = $ambil;
 
-        $this->output->set_status_header(200)->set_content_type('application/json')->set_output(json_encode($response));
+		$this->output->set_status_header(200)->set_content_type('application/json')->set_output(json_encode($response));
 	}
 
 	function generateAlgorima($test = 0)
@@ -365,18 +373,18 @@ class Api extends CI_Controller
 		$bestFitMutasi = calculateBestMutasi($mutasi);
 		$minute = transformToMinute($bestFitCrossover['id'], $bestFitMutasi['id'], $fitnesIndividu);
 		$allResult = [
-				"dataAwal" => $this->KKD,
-				"pemesanan" => $hasil,
-				"allIndividu" => $individu,
-				"fitnesIndividu" => $fitnesIndividu,
-				"selectedParent" => $selectedParent,
-				"firstCrossover" => $firstCrossover,
-				"secondCrossover" => $secondCrossover,
-				"mutasi" => $mutasi,
-				"bestFitCrossover" => $bestFitCrossover,
-				"bestFitMutasi" => $bestFitMutasi,
-				"result" => $minute
-			];
+			"dataAwal" => $this->KKD,
+			"pemesanan" => $hasil,
+			"allIndividu" => $individu,
+			"fitnesIndividu" => $fitnesIndividu,
+			"selectedParent" => $selectedParent,
+			"firstCrossover" => $firstCrossover,
+			"secondCrossover" => $secondCrossover,
+			"mutasi" => $mutasi,
+			"bestFitCrossover" => $bestFitCrossover,
+			"bestFitMutasi" => $bestFitMutasi,
+			"result" => $minute
+		];
 
 		return (object)[
 			"minute" => $minute,
@@ -406,7 +414,7 @@ class Api extends CI_Controller
 			$date = date("Y-m-d");
 		}
 		$algo = $this->generateAlgorima();
-		$totalMinute = 8*60;
+		$totalMinute = 8 * 60;
 		$avgTime = $algo->minute->avgCeil;
 		$splitTo = $totalMinute / $avgTime;
 		$modSplit = $totalMinute % $avgTime;
@@ -421,7 +429,7 @@ class Api extends CI_Controller
 			$dokters = $this->authen->getDokter();
 			foreach ($dokters as $keyDokter => $dokter) {
 				$startTime = "09:00:00";
-				for ($i=0; $i < $splitTo ; $i++) {
+				for ($i = 0; $i < $splitTo; $i++) {
 					$endTime = strtotime("+$avgTime minutes", strtotime($startTime));
 					$jadwalToSave[] = [
 						"dokterId" => $dokter->id,
@@ -445,5 +453,4 @@ class Api extends CI_Controller
 		$response['data'] = $jadwal;
 		$this->output->set_status_header(200)->set_content_type('application/json')->set_output(json_encode($response));
 	}
-
 }

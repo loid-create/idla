@@ -31,7 +31,7 @@ $(function () {
 		form_data.append('receiver_id', receiver_id);
 
 		$.ajax({
-			url: 'chat-attachment/upload',
+			url: '/dokter/send_text_message',
 			dataType: 'json',
 			cache: false,
 			contentType: false,
@@ -53,7 +53,7 @@ $(function () {
 		var receiver_id = $('#ReciverId_txt').val();
 		$.ajax({
 			//dataType : "json",
-			url: 'chat-clear?receiver_id=' + receiver_id,
+			url: '/dokter/chat_clear_client_cs?receiver_id=' + receiver_id,
 			success: function (data) {
 				GetChatHistory(receiver_id);
 			},
@@ -137,7 +137,7 @@ function sendTxtMessage(message) {
 				messageTxt: messageTxt,
 				receiver_id: receiver_id
 			},
-			url: 'send-message',
+			url: '/dokter/send_text_message',
 			success: function (data) {
 				GetChatHistory(receiver_id)
 			},
@@ -159,7 +159,7 @@ function sendTxtMessage(message) {
 function GetChatHistory(receiver_id) {
 	$.ajax({
 		//dataType : "json",
-		url: 'get-chat-history-vendorD?receiver_id=' + receiver_id,
+		url: '/dokter/get_chat_history_by_vendor?receiver_id=' + receiver_id,
 		success: function (data) {
 			$('#dumppy').html(data);
 			ScrollDown();

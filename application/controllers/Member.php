@@ -114,7 +114,7 @@ class Member extends CI_Controller
             'attachment_name' => $attachment_name,
             'file_ext' => $file_ext,
             'mime_type' => $mime_type,
-            'message_date_time' => date('Y-m-d H:i:s'), //23 Jan 2:05 pm
+            'message_date' => date('Y-m-d H:i:s'), //23 Jan 2:05 pm
             'ip_address' => $this->input->ip_address(),
         ];
 
@@ -169,7 +169,7 @@ class Member extends CI_Controller
             $userPic = $this->UserModel->PictureUrlById($chat['sender_id']);
 
             $message = $chat['message'];
-            $messagedatetime = date('d M H:i A', strtotime($chat['message_date_time']));
+            $messagedatetime = date('d M H:i A', strtotime($chat['message_date']));
 
 ?>
             <?php

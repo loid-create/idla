@@ -79,7 +79,7 @@ class Dokter extends CI_Controller
     public function send_text_message()
     {
         $post = $this->input->post();
-        $messageTxt = $this->input->post('message', true);
+        $messageTxt = 'NULL';
         $attachment_name = '';
         $file_ext = '';
         $mime_type = '';
@@ -101,11 +101,9 @@ class Dokter extends CI_Controller
             'attachment_name' => $attachment_name,
             'file_ext' => $file_ext,
             'mime_type' => $mime_type,
-            'message_date_time' => date('Y-m-d H:i:s'), //23 Jan 2:05 pm
+            'message_date' => date('Y-m-d H:i:s'), //23 Jan 2:05 pm
             'ip_address' => $this->input->ip_address(),
         ];
-
-        $this->db->insert('chat', $data);
 
         $query = $this->ChatModel->SendTxtMessage($this->OuthModel->xss_clean($data));
         $response = '';
@@ -158,7 +156,7 @@ class Dokter extends CI_Controller
             $userPic = $this->UserModel->PictureUrlById($chat['sender_id']);
 
             $message = $chat['message'];
-            $messagedatetime = date('d M H:i A', strtotime($chat['message_date_time']));
+            $messagedatetime = date('d M H:i A', strtotime($chat['message_date']));
 
 ?>
             <?php

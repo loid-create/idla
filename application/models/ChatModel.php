@@ -12,7 +12,7 @@ class ChatModel extends CI_Model
 
     public function SendTxtMessage($data)
     {
-        $res = $this->db->insert($this->Table, $data);
+        $res = $this->db->insert('chat', $data);
         if ($res == 1)
             return true;
         else
@@ -27,7 +27,7 @@ class ChatModel extends CI_Model
         $condition = "`sender_id`= '$sender_id' AND `receiver_id` = '$receiver_id' OR `sender_id`= '$receiver_id' AND `receiver_id` = '$sender_id'";
 
         $this->db->select('*');
-        $this->db->from($this->Table);
+        $this->db->from('chat');
         $this->db->where($condition);
         $query = $this->db->get();
         if ($query) {
@@ -40,7 +40,7 @@ class ChatModel extends CI_Model
     public function GetReciverMessageList($receiver_id)
     {
         $this->db->select('*');
-        $this->db->from($this->Table);
+        $this->db->from('chat');
         $this->db->where('receiver_id', $receiver_id);
         $query = $this->db->get();
         if ($query) {
@@ -52,7 +52,7 @@ class ChatModel extends CI_Model
 
     public function TrashById($receiver_id)
     {
-        $res = $this->db->delete($this->Table, ['receiver_id' => $receiver_id]);
+        $res = $this->db->delete('chat', ['receiver_id' => $receiver_id]);
         if ($res == 1)
             return true;
         else
