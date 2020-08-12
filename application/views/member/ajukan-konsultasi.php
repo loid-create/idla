@@ -36,7 +36,11 @@
                             <p class="card-text">09 : 00 - 17 : 00</p>
                         </div>
                     </div>
+<<<<<<< HEAD
 
+=======
+                    
+>>>>>>> 08aed4fbc1ffa433375bff77ec4c3192c9929194
                 </div>
                 <div class="col">
                     <p class="card-text mb-0 font-weight-bold">Profil Dokter</p>

@@ -30,7 +30,11 @@
                         <div class="col">Senin</div>
                         <div class="col text-center">09 : 00 - 17 : 00</div>
                         <div class="col text-right">
+<<<<<<< HEAD
                             <button class="btn btn-outline-success btn-sm">Buat Jadwal</button>
+=======
+                        <button class="btn btn-outline-success btn-sm">Buat Jadwal</button>
+>>>>>>> 08aed4fbc1ffa433375bff77ec4c3192c9929194
                         </div>
                     </li>
                     <li class="list-group-item d-flex">
