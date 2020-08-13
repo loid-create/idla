@@ -64,9 +64,6 @@
                                     </form>
                                     <br>
                                     <div class="text-center">
-                                        <a class="small" href="#">Lupa Password?</a>
-                                    </div>
-                                    <div class="text-center">
                                         <a class="small" href="<?= base_url('home/daftar'); ?>">Belum memiliki akun ? Daftar!</a>
                                     </div>
                                 </div>

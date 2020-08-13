@@ -18,7 +18,9 @@ class Home extends CI_Controller
 	}
 	public function kontak()
 	{
-		$this->load->view('home/kontak');
+		if ($this->form_validation->run() == false) {
+			$this->load->view('home/kontak');
+		}
 	}
 	public function daftar()
 	{

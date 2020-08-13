@@ -72,9 +72,6 @@
                                     </form>
                                     <br>
                                     <div class="text-center">
-                                        <a class="small" href="#">Lupa Password?</a>
-                                    </div>
-                                    <div class="text-center">
                                         <a class="small" href="<?= base_url('home/masuk'); ?>">Sudah memiliki akun ? Masuk!</a>
                                     </div>
                                 </div>
