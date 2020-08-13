@@ -48,7 +48,7 @@
     <nav class="navbar navbar-expand-lg fixed-top navbar-custom sticky sticky-dark">
         <div class="container">
             <!-- LOGO -->
-            <a class="navbar-brand logo text-uppercase" href="index.html">
+            <a class="navbar-brand logo text-uppercase" href="/">
                 Eldora Vet Clinic
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,7 +85,7 @@
                     <div class="row">
                         <div class="col-lg-8">
                             <div class="home-title">
-                                <h1 class="text-animate display-4 font-weight-bold">Penjadwalan Konsultasi Menggunakan Algoritma Genetika Dan Layanan Konsultasi Online</h1>
+                                <h1 class="text-animate display-4 font-weight-bold">Layanan Konsultasi Online</h1>
                                 <h3 class="text-animate text-muted mt-3">Eldora Vet Clinic</h3>
                             </div>
                         </div>

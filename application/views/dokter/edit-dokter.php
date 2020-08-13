@@ -22,7 +22,7 @@
                     <input type="text" class="form-control" id="email" name="email" value="<?= $dokter['email']; ?>" readonly>
                 </div>
             </div>
-            <div class="form-group row">
+            <!-- <div class="form-group row">
                 <label for="biaya" class="col-sm-3 col-form-label">Biaya Jasa</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="biaya" name="biaya" value="" placeholder="0">
@@ -207,7 +207,7 @@
                         <option value="23">23 : 00</option>
                     </select>
                 </div>
-            </div>
+            </div> -->
             <div class="form-group row">
                 <div class="col-sm-3">Photo</div>
                 <div class="col-sm-9">
