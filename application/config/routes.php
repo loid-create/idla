@@ -52,15 +52,3 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
-
-$route['chat'] = 'member/konsultasi';
-$route['send-message'] = 'member/send_text_message';
-$route['chat-attachment/upload'] = 'member/send_text_message';
-$route['get-chat-history-vendor'] = 'member/get_chat_history_by_vendor';
-$route['chat-clear'] = 'member/chat_clear_client_cs';
-
-$route['chat'] = 'dokter/konsultasi_online';
-$route['send-messageD'] = 'dokter/send_text_message';
-$route['chat-attachment/upload'] = 'dokter/send_text_message';
-$route['get-chat-history-vendorD'] = 'dokter/get_chat_history_by_vendor';
-$route['chat-clearD'] = 'dokter/chat_clear_client_cs';

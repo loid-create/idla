@@ -27,11 +27,11 @@
         Akun
     </div>
 
-    <li class="nav-item">
+    <!-- <li class="nav-item">
         <a href="<?= base_url('member/ajukan'); ?>" class="nav-link">
             <i class="fas fa-fw fa-bars"></i>
             <span>Ajukan Jadwal Konsultasi</span></a>
-    </li>
+    </li> -->
 
     <li class="nav-item">
         <a href="<?= base_url('member/konsultasi'); ?>" class="nav-link">
@@ -44,12 +44,12 @@
             <i class="fas fa-fw fa-paw"></i>
             <span>Data Peliharaan</span></a>
     </li>
-
+    <!-- 
     <li class="nav-item">
         <a href="<?= base_url('member/medical_record'); ?>" class="nav-link">
             <i class="fas fa-fw fa-user-md"></i>
             <span>Medical Record Peliharaan</span></a>
-    </li>
+    </li> -->
 
     <li class="nav-item">
         <a href="<?= base_url('member/edit_profile'); ?>" class="nav-link">
