@@ -70,6 +70,19 @@ class Admin extends CI_Controller
         $this->load->view('admin/templates/footer');
     }
 
+    public function edit_data_info()
+    {
+        $this->form_validation->set_rules('alamat', 'Alamat Info', 'required|trim');
+        $this->form_validation->set_rules('notelp', 'No Telp Info', 'required|trim');
+        $this->form_validation->set_rules('email', 'Email Info', 'required|trim|valid_email');
+
+        if ($this->form_validation->run() == true) {
+            $this->authen->editInfo();
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"><strong>Data Info Klinik kamu berhasil diubah !</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            redirect('admin/kelola_info');
+        }
+    }
+
     public function hapus_data_member()
     {
         $id = $this->uri->segment(3);
@@ -118,6 +131,7 @@ class Admin extends CI_Controller
         $data['klinik'] = $hasil3;
 
         $hasil4 = $this->db->get('kontak')->result_array();
+        $data['kontak'] = $hasil4;
 
         $this->load->view('admin/templates/header', $data);
         $this->load->view('admin/templates/sidebar', $data);

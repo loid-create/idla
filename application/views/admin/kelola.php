@@ -8,6 +8,33 @@
         <div class="card-header"><strong>Data Klinik</strong></div>
         <div class="card-body">
             <?= $this->session->flashdata('message'); ?>
+            <table id="dataFeedback" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Pengirim</th>
+                        <th>Email Pengirim</th>
+                        <th>Subject Pengirim</th>
+                        <th>Pesan Pengirim</th>
+                        <th>Alamat IP Pengirim</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $i = 1; ?>
+                    <?php foreach ($kontak as $msg) : ?>
+                        <tr>
+                            <td><?= $i; ?></td>
+                            <td><?= $msg['nama']; ?></td>
+                            <td><?= $msg['email']; ?></td>
+                            <td><?= $msg['subject']; ?></td>
+                            <td><?= $msg['message']; ?></td>
+                            <td><?= $msg['ip_address']; ?></td>
+                        </tr>
+                        <?php $i++; ?>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+            <br />
             <table id="dataKlinik" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
@@ -102,7 +129,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form class="user" method="POST" action="<?= base_url('admin/kelola_info'); ?>">
+                <form class="user" method="POST" action="<?= base_url('admin/edit_data_info'); ?>">
                     <input type="hidden" class="form-control" id="id" name="id" value="<?= $ic['id_info']; ?>" readonly>
                     <div class="modal-body">
                         <div class="form-group row">

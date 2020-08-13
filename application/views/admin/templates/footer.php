@@ -60,6 +60,9 @@
 
 <script>
     $(document).ready(function() {
+        $('#dataFeedback').DataTable();
+    });
+    $(document).ready(function() {
         $('#dataMember').DataTable();
     });
     $(document).ready(function() {

@@ -183,6 +183,23 @@ class Auth_model extends CI_Model
         $this->db->update('peliharaan', $data);
     }
 
+    public function editInfo()
+    {
+        $id = $this->input->post('id', true);
+        $alt_info = $this->input->post('alamat', true);
+        $np_info = $this->input->post('notelp', true);
+        $em_info = $this->input->post('email', true);
+
+        $data = [
+            'alamat' => htmlspecialchars($alt_info),
+            'notelp' => htmlspecialchars($np_info),
+            'email' => htmlspecialchars($em_info)
+        ];
+
+        $this->db->where('id_info', $id);
+        $this->db->update('info', $data);
+    }
+
     public function deletePet($id)
     {
         $this->db->where('id', $id);
