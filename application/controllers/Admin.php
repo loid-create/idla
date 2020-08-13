@@ -117,6 +117,8 @@ class Admin extends CI_Controller
         $hasil3 = $this->db->get('klinik')->result_array();
         $data['klinik'] = $hasil3;
 
+        $hasil4 = $this->db->get('kontak')->result_array();
+
         $this->load->view('admin/templates/header', $data);
         $this->load->view('admin/templates/sidebar', $data);
         $this->load->view('admin/templates/topbar', $data);

@@ -18,8 +18,17 @@ class Home extends CI_Controller
 	}
 	public function kontak()
 	{
+		$this->form_validation->set_rules('name', 'Name', 'required|trim');
+		$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+		$this->form_validation->set_rules('subject', 'Subject', 'required|trim');
+		$this->form_validation->set_rules('comments', 'Pesan', 'required|trim');
+
 		if ($this->form_validation->run() == false) {
 			$this->load->view('home/kontak');
+		} else {
+			$this->authen->sendKontak();
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Pesan kamu berhasil dikirimkan, terimakasih.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+			redirect('home/kontak');
 		}
 	}
 	public function daftar()

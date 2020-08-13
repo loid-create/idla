@@ -26,6 +26,22 @@ class Auth_model extends CI_Model
         return $data;
     }
 
+    public function sendKontak()
+    {
+        $name = $this->input->post('name', true);
+        $email = $this->input->post('email', true);
+        $sj = $this->input->post('subject', true);
+        $pesan = $this->input->post('comments', true);
+        $data = [
+            'nama' => htmlspecialchars($name),
+            'email' => htmlspecialchars($email),
+            'subject' => htmlspecialchars($sj),
+            'message' => htmlspecialchars($pesan),
+            'ip_address' => $this->input->ip_address()
+        ];
+        $this->db->insert('kontak', $data);
+    }
+
     public function editMember()
     {
         $ambil = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();

@@ -92,24 +92,28 @@
                 <div class="col-lg-12">
                     <div class="custom-form mt-3">
                         <div id="message"></div>
-                        <form method="post" action="<?= base_url('assets/'); ?>php/contact.php" name="contact-form" id="contact-form">
+                        <?= $this->session->flashdata('message'); ?>
+                        <form method="POST" action="<?php base_url('home/kontak'); ?>" name="contact-form" id="contact-form">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="name">Name</label>
-                                        <input name="name" id="name" type="text" class="form-control" placeholder="Nama kamu...">
+                                        <input name="name" id="name" type="text" class="form-control" placeholder="Nama kamu..." value="<?= set_value('name'); ?>">
+                                        <?= form_error('name', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="email">Email address</label>
-                                        <input name="email" id="email" type="email" class="form-control" placeholder="Email kamu...">
+                                        <input name="email" id="email" type="text" class="form-control" placeholder="Email kamu..." value="<?= set_value('email'); ?>">
+                                        <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label for="subject">Subject</label>
-                                        <input name="subject" id="subject" type="text" class="form-control" placeholder="Subjek kamu...">
+                                        <input name="subject" id="subject" type="text" class="form-control" placeholder="Subjek kamu..." value="<?= set_value('subject'); ?>">
+                                        <?= form_error('subject', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
                                 </div>
                             </div>
@@ -118,6 +122,7 @@
                                     <div class="form-group">
                                         <label for="comments">Message</label>
                                         <textarea name="comments" id="comments" rows="4" class="form-control" placeholder="Pesan kamu..."></textarea>
+                                        <?= form_error('comments', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
                                 </div>
                             </div>
