@@ -25,32 +25,6 @@ class Member extends CI_Controller
         $this->load->view('member/templates/footer');
     }
 
-    public function ajukan()
-    {
-        $ambil = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['title'] = 'Eldora Vet Clinic - Member';
-        $data['member'] = $ambil;
-
-        $this->load->view('member/templates/header', $data);
-        $this->load->view('member/templates/sidebar', $data);
-        $this->load->view('member/templates/topbar', $data);
-        $this->load->view('member/ajukan-konsultasi', $data);
-        $this->load->view('member/templates/footer');
-    }
-
-    public function detail_pengajuan()
-    {
-        $ambil = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['title'] = 'Eldora Vet Clinic - Member';
-        $data['member'] = $ambil;
-
-        $this->load->view('member/templates/header', $data);
-        $this->load->view('member/templates/sidebar', $data);
-        $this->load->view('member/templates/topbar', $data);
-        $this->load->view('member/detail-pengajuan', $data);
-        $this->load->view('member/templates/footer');
-    }
-
     public function konsultasi()
     {
         $ambil = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
@@ -257,19 +231,6 @@ class Member extends CI_Controller
         }
 
         $this->ChatModel->TrashById($receiver_id);
-    }
-
-    public function medical_record()
-    {
-        $ambil = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['title'] = 'Eldora Vet Clinic - Member';
-        $data['member'] = $ambil;
-
-        $this->load->view('member/templates/header', $data);
-        $this->load->view('member/templates/sidebar', $data);
-        $this->load->view('member/templates/topbar', $data);
-        $this->load->view('member/medical-record', $data);
-        $this->load->view('member/templates/footer');
     }
 
     public function edit_profile()
