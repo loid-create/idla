@@ -63,6 +63,109 @@ class Member extends CI_Controller
         $this->load->view('member/templates/footer');
     }
 
+    public function ajukan_konsultasi()
+    {
+        $ambil = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['title'] = 'Eldora Vet Clinic - Member';
+        $data['member'] = $ambil;
+
+        $list = [];
+        if ($this->session->userdata['role_id'] == 2) {
+            $list = $this->UserModel->VendorsList();
+        }
+        if ($this->session->userdata['role_id'] == 3) {
+            $list = $this->UserModel->ClientsListCs();
+        }
+        $vendorslist = [];
+        foreach ($list as $u) {
+            $vendorslist[] = [
+                'id' =>  $u['id'],
+                'nama' => $u['nama'],
+                'gambar' => $this->UserModel->PictureUrlById($u['id']),
+                'email' => $u['email'],
+            ];
+        }
+        $data['vendorslist'] = $vendorslist;
+
+        $this->load->view('member/templates/header', $data);
+        $this->load->view('member/templates/sidebar', $data);
+        $this->load->view('member/templates/topbar', $data);
+        $this->load->view('member/ajukan-konsultasi', $data);
+        $this->load->view('member/templates/footer');
+    }
+
+    public function detail_pengajuan($id)
+    {
+        $ambil = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['member'] = $ambil;
+        include('Api.php');
+        $api = new Api();
+        
+        if ($api) {
+            $startDate = time();
+            $date = date("Y-m-d");
+            if ($date) {
+                $api->get_jadwal($date);
+                $date1 = date('Y-m-d', strtotime('+1 day', $startDate));
+                if ($date1) {
+                    $api->get_jadwal($date1);
+                    $date2 = date('Y-m-d', strtotime('+2 day', $startDate));
+                    if ($date2) {
+                        $api->get_jadwal($date2);
+                    }
+                }
+            }
+        }
+        $jadwal_hari = $this->db->group_by('date')->get_where('jadwal_dokter', ['dokterId' => $id])->result_array();
+        $jadwal_jam = $this->db->get_where('jadwal_dokter', ['dokterId' => $id])->result_array();
+        $dokter = $this->db->get_where('user', ['id' => $id])->row_array();
+        
+        $booked = $this->db->get_where('jadwal_dokter', ['dokterId' => $id], ['isBooked' => 1])->num_rows();
+        $count = $booked;
+        $data['title'] = 'Eldora Vet Clinic - Member';
+        $data['dokter'] = $dokter;
+        $data['jadwal_hari'] = $jadwal_hari;
+        $data['jadwal_jam'] = $jadwal_jam;
+        $data['gambar'] = $this->UserModel->PictureUrlById($dokter['id']);
+        
+        $data['total_pasien'] = $count;
+
+        $this->load->view('member/templates/header', $data);
+        $this->load->view('member/templates/sidebar', $data);
+        $this->load->view('member/templates/topbar', $data);
+        $this->load->view('member/detail-pengajuan', $data);
+        $this->load->view('member/templates/footer');
+    }
+
+    // public function hari($day) {
+    //     $hari = $day;
+  
+    //     switch ($hari) {
+    //         case "Sun":
+    //             $hari = "Minggu";
+    //             break;
+    //         case "Mon":
+    //             $hari = "Senin";
+    //             break;
+    //         case "Tue":
+    //             $hari = "Selasa";
+    //             break;
+    //         case "Wed":
+    //             $hari = "Rabu";
+    //             break;
+    //         case "Thu":
+    //             $hari = "Kamis";
+    //             break;
+    //         case "Fri":
+    //             $hari = "Jum'at";
+    //             break;
+    //         case "Sat":
+    //             $hari = "Sabtu";
+    //             break;
+    //     }
+    //     return $hari;
+    // }
+
     public function send_text_message()
     {
         $post = $this->input->post();

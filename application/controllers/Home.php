@@ -89,6 +89,7 @@ class Home extends CI_Controller
 					];
 					//session
 					$this->session->set_userdata($data);
+					$masuk['token'] = $this->generateToken($masuk);
 					//login berdasarkan role
 					if ($masuk['role_id'] == 1) {
 						redirect('admin');
@@ -113,6 +114,32 @@ class Home extends CI_Controller
 			redirect('home/masuk');
 		}
 	}
+
+	private function generateToken($user)
+	{
+		$ciphering = "AES-128-CTR";
+		$iv_length = openssl_cipher_iv_length($ciphering);
+		$options = 0;
+
+		// Non-NULL Initialization Vector for encryption 
+		$encryption_iv = '1234567891011121';
+
+		// Store the encryption key 
+		$encryption_key = "eldoraKey";
+
+		$jwt = json_encode((object)$user);
+
+		// Use openssl_encrypt() function to encrypt the data 
+		$encryption = openssl_encrypt(
+			$jwt,
+			$ciphering,
+			$encryption_key,
+			$options,
+			$encryption_iv
+		);
+		return $encryption;
+	}
+
 	public function logout()
 	{
 		$this->session->unset_userdata('id');

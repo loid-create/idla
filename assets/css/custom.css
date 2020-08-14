@@ -1032,3 +1032,60 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2b2b2b', endColorstr='#111111', GradientType=0) !important;
     color: #fff
 }
+
+.list-dokter {
+    list-style-type: none!important;
+    padding: 0!important;
+  }
+  
+.list-dokter li {
+    float: left!important;
+    margin: 0 5px 0 0!important;
+    width: 150px!important;
+    height: 40px!important;
+    position: relative!important;
+  }
+  
+.list-dokter label,
+.list-dokter input {
+    display: block!important;
+    position: absolute!important;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  
+.list-dokter input[type="radio"] {
+    opacity: 0.01!important;
+    z-index: 100!important;
+  }
+  
+.list-dokter input[type="radio"]:checked+label,
+.Checked+label {
+    color: #fff;
+    background-color: #0051f4 !important;
+    outline: none;
+    text-decoration: none;
+  }
+  
+.list-dokter label {
+    padding: 5px!important;
+    cursor: pointer!important;
+    z-index: 90!important;
+    background-color: transparent;
+    border: 1px solid #0051f4;
+    color: #3F51B5;
+    font-size: 13px;
+    letter-spacing: 1px;
+    transition: all 0.5s;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  
+.list-dokter label:hover {
+    color: #fff;
+    background-color: #0051f4 !important;
+    outline: none;
+    text-decoration: none;
+  }

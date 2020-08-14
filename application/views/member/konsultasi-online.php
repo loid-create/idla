@@ -77,7 +77,7 @@
                             <?php if (!empty($vendorslist)) {
                                 foreach ($vendorslist as $v) :
                             ?>
-                                    <li class="selectVendor" id="<?= $v['id']; ?>" title="<?= $v['nama']; ?>">
+                                    <li class="selectVendor" id="<?= $v['id']; ?>" title="<?= $v['nama']; ?>" style="cursor:pointer;">
                                         <img src="<?= $v['gambar']; ?>" alt="<?= $v['nama']; ?>" title="<?= $v['nama']; ?>">
                                         <a class="users-list-name" href="#"><?= $v['nama']; ?></a>
                                         <!--<span class="users-list-date">Yesterday</span>-->

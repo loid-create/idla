@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Api extends CI_Controller
+class Api extends CI_Model
 {
 	public function __construct()
 	{
@@ -404,14 +404,14 @@ class Api extends CI_Controller
 		$this->output->set_status_header(200)->set_content_type('application/json')->set_output(json_encode($response));
 	}
 
-	public function get_jadwal()
+	public function get_jadwal($d)
 	{
 		//GET /Api/get_jadwal/:id?date=2020-08-14
 		//id merupakan id dokter
 		$date = $this->input->get("date");
 		$dokterId = $this->uri->segment(3);
 		if (!$this->input->get("date")) {
-			$date = date("Y-m-d");
+			$date = $d;
 		}
 		$algo = $this->generateAlgorima();
 		$totalMinute = 8 * 60;
@@ -446,11 +446,9 @@ class Api extends CI_Controller
 			}
 		}
 
-		$jadwal = $this->authen->getJadwal($dokterId, $date);
-
 		$response['success'] = 1;
 		$response['meta'] = ["message" => "get jadwal success"];
-		$response['data'] = $jadwal;
-		$this->output->set_status_header(200)->set_content_type('application/json')->set_output(json_encode($response));
+
+		// $this->output->set_status_header(200)->set_content_type('application/json')->set_output(json_encode($response));
 	}
 }

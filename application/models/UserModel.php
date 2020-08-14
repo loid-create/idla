@@ -96,7 +96,7 @@ class UserModel extends CI_Model
 
     public function VendorsList()
     {
-        $this->db->select('id,nama,gambar');
+        $this->db->select('id,nama,gambar,email');
         $this->db->from($this->User);
         $this->db->where("role_id", "3");
         $this->db->where("status", "1");
