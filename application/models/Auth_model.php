@@ -17,6 +17,7 @@ class Auth_model extends CI_Model
             'gambar' => 'member.png',
             'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
             'role_id' => 2,
+            'status' => 1,
             'is_active' => 1,
             'tgl_lahir' => date('Y-m-d'),
             'date_created' => date('Y-m-d')

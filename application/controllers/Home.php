@@ -49,7 +49,9 @@ class Home extends CI_Controller
 	public function daftar()
 	{
 		//validasi
-		$this->form_validation->set_rules('name', 'Name', 'required|trim');
+		$this->form_validation->set_rules('name', 'Name', 'required|trim|max_length[50]', [
+			'max_length' => 'Nama tidak boleh lebih dari 50 huruf !'
+		]);
 		$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
 			'is_unique' => 'Email telah terdaftar !'
 		]);

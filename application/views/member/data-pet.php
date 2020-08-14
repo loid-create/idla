@@ -43,6 +43,11 @@
                             $p['jk_pet'] = 'Spaying (Jantan Steril)';
                         }
                         ?>
+                        <?php
+                        if ($p['date_modified'] == '0000-00-00') {
+                            $p['date_modified'] = '-';
+                        }
+                        ?>
                         <tr>
                             <td><?= $i; ?></td>
                             <td><?= $p['nama_pet']; ?></td>
