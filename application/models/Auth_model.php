@@ -192,7 +192,7 @@ class Auth_model extends CI_Model
 
     public function tambahJanji($userid)
     {
-        $jadwalId = $this->input->post('jadwalId');
+        $jadwalId = $this->input->post('jadwalId', true);
         $jadwal = $this->detailJadwal($jadwalId);
         if (!$jadwal->isBooked) {
             $data = [
@@ -242,7 +242,7 @@ class Auth_model extends CI_Model
 
     public function confirmJanji() // untuk dokter
     {
-        $id = $this->input->post('id');
+        $id = $this->input->post('id', true);
         $data = [
             'konfirmasi' => 1
         ];

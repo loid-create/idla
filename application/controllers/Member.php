@@ -104,12 +104,15 @@ class Member extends CI_Controller
         if ($api) {
             $startDate = time();
             $date = date("Y-m-d");
+            $jadwal_jam1 = $this->db->get_where('jadwal_dokter', ['dokterId' => $id, 'AND', 'date' => $date])->result_array();
             if ($date) {
                 $api->get_jadwal($date);
                 $date1 = date('Y-m-d', strtotime('+1 day', $startDate));
+                $jadwal_jam2 = $this->db->get_where('jadwal_dokter', ['dokterId' => $id, 'AND', 'date' => $date1])->result_array();
                 if ($date1) {
                     $api->get_jadwal($date1);
                     $date2 = date('Y-m-d', strtotime('+2 day', $startDate));
+                    $jadwal_jam3 = $this->db->get_where('jadwal_dokter', ['dokterId' => $id, 'AND', 'date' => $date2])->result_array();
                     if ($date2) {
                         $api->get_jadwal($date2);
                     }
@@ -117,7 +120,6 @@ class Member extends CI_Controller
             }
         }
         $jadwal_hari = $this->db->group_by('date')->get_where('jadwal_dokter', ['dokterId' => $id])->result_array();
-        $jadwal_jam = $this->db->get_where('jadwal_dokter', ['dokterId' => $id])->result_array();
         $dokter = $this->db->get_where('user', ['id' => $id])->row_array();
         
         $booked = $this->db->get_where('jadwal_dokter', ['dokterId' => $id], ['isBooked' => 1])->num_rows();
@@ -125,7 +127,9 @@ class Member extends CI_Controller
         $data['title'] = 'Eldora Vet Clinic - Member';
         $data['dokter'] = $dokter;
         $data['jadwal_hari'] = $jadwal_hari;
-        $data['jadwal_jam'] = $jadwal_jam;
+        $data['jadwal_jam_1'] = $jadwal_jam1;
+        $data['jadwal_jam_2'] = $jadwal_jam2;
+        $data['jadwal_jam_3'] = $jadwal_jam3;
         $data['gambar'] = $this->UserModel->PictureUrlById($dokter['id']);
         
         $data['total_pasien'] = $count;
@@ -412,6 +416,17 @@ class Member extends CI_Controller
             $this->authen->editPet();
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"><strong>Data Peliharaan kamu berhasil diubah !</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
             redirect('member/data_pet');
+        }
+    }
+
+    public function tambah_jadwal()
+    {
+        $this->form_validation->set_rules('jadwalId', 'Jam Jadwal', 'required');
+        $userId = $this->session->userdata['id'];
+        if ($this->form_validation->run() == true) {
+            $this->authen->tambahJanji($userId);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"><strong>Jadwal Berhasil Dibuat !</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            redirect('member/ajukan_konsultasi');
         }
     }
 }

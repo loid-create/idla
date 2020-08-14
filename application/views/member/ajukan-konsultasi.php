@@ -4,6 +4,8 @@
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">Pengajuan Jadwal Konsultasi</h1>
 
+    <?= $this->session->flashdata('message'); ?>
+    
     <?php if (!empty($vendorslist)) {
         foreach ($vendorslist as $v) :
     ?>

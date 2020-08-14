@@ -1083,7 +1083,7 @@
     text-transform: uppercase;
   }
   
-.list-dokter label:hover {
+label.list-aktif:hover {
     color: #fff;
     background-color: #0051f4 !important;
     outline: none;

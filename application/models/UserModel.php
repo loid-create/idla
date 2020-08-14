@@ -108,7 +108,7 @@ class UserModel extends CI_Model
 
     public function ClientsListCs()
     {
-        $this->db->select('id,nama,gambar');
+        $this->db->select('id,nama,gambar,email');
         $this->db->from($this->User);
         $this->db->where("role_id", "2");
         $this->db->where("status", "1");
@@ -116,5 +116,16 @@ class UserModel extends CI_Model
         $r = $query->result_array();
 
         return $r;
+    }
+
+    public function joinTable() {
+        $this->db->select('janji_temu.id, user.nama, user.gambar, jadwal_dokter.startAt, jadwal_dokter.endAt, user.kota, user.alamat, user.jenis_kelamin, janji_temu.konfirmasi, jadwal_dokter.date');
+        $this->db->from('janji_temu');
+        $this->db->join('user','user.id=janji_temu.userId');
+        $this->db->join('jadwal_dokter','jadwal_dokter.id=janji_temu.jadwalId');
+        
+        $query = $this->db->get();
+
+        return $query->result_array();
     }
 }

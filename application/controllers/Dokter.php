@@ -63,6 +63,25 @@ class Dokter extends CI_Controller
         $this->load->view('dokter/templates/footer');
     }
 
+    public function jadwal()
+    {
+        $ambil = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['title'] = 'Eldora Vet Clinic - Dokter';
+        $data['dokter'] = $ambil;
+        $jadwal = [];
+        if ($ambil){
+            $jadwal = $this->UserModel->joinTable(); 
+        }
+        $data['jadwal'] = $jadwal;
+
+        $this->load->view('dokter/templates/header', $data);
+        $this->load->view('dokter/templates/sidebar', $data);
+        $this->load->view('dokter/templates/topbar', $data);
+        $this->load->view('dokter/jadwal', $data);
+        $this->load->view('dokter/templates/footer');
+        // $this->output->set_status_header(200)->set_content_type('application/json')->set_output(json_encode($jadwal));
+    }
+
     public function send_text_message()
     {
         $post = $this->input->post();
@@ -257,6 +276,16 @@ class Dokter extends CI_Controller
             $this->authen->editMember();
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Informasi akun kamu telah diubah. <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
             redirect('dokter');
+        }
+    }
+
+    public function konfirmasi()
+    {
+        $this->form_validation->set_rules('id', 'Konfirmasi Jadwal', 'required');
+        if ($this->form_validation->run() == true) {
+            $this->authen->confirmJanji();
+            $this->session->set_flashdata('message', '<div class="alert alert-info text-white" role="alert"><strong>Jadwal Telah Dikonfirmasi</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            redirect('dokter/jadwal');
         }
     }
 }
