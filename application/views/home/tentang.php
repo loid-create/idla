@@ -48,7 +48,7 @@
     <nav class="navbar navbar-expand-lg fixed-top navbar-custom sticky sticky-dark">
         <div class="container">
             <!-- LOGO -->
-            <a class="navbar-brand logo text-uppercase" href="index.html">
+            <a class="navbar-brand logo text-uppercase" href="./">
                 Eldora Vet Clinic
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -90,8 +90,8 @@
             <div class="row vertical-content">
                 <div class="col-lg-12">
                     <div class="about-content p-4">
-                        <h4>Eldora Vet Clinic</h4>
-                        <h6 class="text-muted">Klinik Hewan</h6>
+                        <h4><?= $t_k['nama_klinik']; ?></h4>
+                        <h6 class="text-muted"><?= $t_k['isi_tentang']; ?></h6>
                         <p class="mt-4"></p>
                     </div>
                 </div>
@@ -99,15 +99,15 @@
             <div class="row mt-5">
                 <div class="col-lg-6">
                     <div class="resume-box mt-4 bg-white p-5">
-                        <h6>Drh. Ari Ramadhan Siregar</h6>
-                        <h5 class="mt-3">Dokter Hewan</h5>
+                        <h6><?= $tg1['nama_dokter']; ?></h6>
+                        <h5 class="mt-3"><?= $tg1['profesi']; ?></h5>
                         <p class="mt-3 mb-0"></p>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="resume-box mt-4 bg-white p-5">
-                        <h6>Drh. Maikhar Gita Eldora</h6>
-                        <h5 class="mt-3">Dokter Hewan</h5>
+                        <h6><?= $tg2['nama_dokter']; ?></h6>
+                        <h5 class="mt-3"><?= $tg2['profesi']; ?></h5>
                         <p class="mt-3 mb-0"></p>
                     </div>
                 </div>
@@ -126,7 +126,7 @@
                             <i class="ti-location-pin text-custom h3"></i>
                         </div>
                         <div class="contact-details text-white">
-                            <p class="mb-0">Jl. Gunung Krakatau No.261, Pulo Brayan Darat I, Kec. Medan Tim., Kota Medan, Sumatera Utara 20236</p>
+                            <p class="mb-0"><?= $i_h['alamat']; ?></p>
                         </div>
                     </div>
                 </div>
@@ -136,7 +136,7 @@
                             <i class="ti-mobile text-custom h3"></i>
                         </div>
                         <div class="contact-details text-white">
-                            <p class="mb-0">+628126494668</p>
+                            <p class="mb-0"><?= $i_h['notelp']; ?></p>
                         </div>
                     </div>
                 </div>
@@ -146,7 +146,7 @@
                             <i class="ti-email text-custom h3"></i>
                         </div>
                         <div class="contact-details text-white">
-                            <p class="mb-0">example@abc.com</p>
+                            <p class="mb-0"><?= $i_h['email']; ?></p>
                         </div>
                     </div>
                 </div>

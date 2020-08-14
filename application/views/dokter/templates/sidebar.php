@@ -2,7 +2,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="./">
         <div class="sidebar-brand-icon">
             <i class="fas fa-stethoscope"></i>
         </div>
@@ -14,7 +14,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="<?= base_url('dokter'); ?>">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -27,23 +27,11 @@
         Akun
     </div>
 
-    <!-- <li class="nav-item">
-        <a href="<?= base_url('dokter/jadwal'); ?>" class="nav-link">
-            <i class="fas fa-fw fa-bars"></i>
-            <span>Lihat Jadwal Janji Member</span></a>
-    </li> -->
-
     <li class="nav-item">
         <a href="<?= base_url('dokter/konsultasi_online'); ?>" class="nav-link">
             <i class="fas fa-fw fa-inbox"></i>
             <span>Lihat Konsultasi Member</span></a>
     </li>
-
-    <!-- <li class="nav-item">
-        <a href="<?= base_url('dokter/medical_record'); ?>" class="nav-link">
-            <i class="fas fa-fw fa-user-md"></i>
-            <span>Medical Record</span></a>
-    </li> -->
 
     <li class="nav-item">
         <a href="<?= base_url('dokter/edit_profile'); ?>" class="nav-link">

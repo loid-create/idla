@@ -48,7 +48,7 @@
     <nav class="navbar navbar-expand-lg fixed-top navbar-custom sticky sticky-dark">
         <div class="container">
             <!-- LOGO -->
-            <a class="navbar-brand logo text-uppercase" href="/">
+            <a class="navbar-brand logo text-uppercase" href="./">
                 Eldora Vet Clinic
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -112,7 +112,7 @@
                             <i class="ti-location-pin text-custom h3"></i>
                         </div>
                         <div class="contact-details text-white">
-                            <p class="mb-0">Jl. Gunung Krakatau No.261, Pulo Brayan Darat I, Kec. Medan Tim., Kota Medan, Sumatera Utara 20236</p>
+                            <p class="mb-0"><?= $i_h['alamat']; ?></p>
                         </div>
                     </div>
                 </div>
@@ -122,7 +122,7 @@
                             <i class="ti-mobile text-custom h3"></i>
                         </div>
                         <div class="contact-details text-white">
-                            <p class="mb-0">+628126494668</p>
+                            <p class="mb-0"><?= $i_h['notelp']; ?></p>
                         </div>
                     </div>
                 </div>
@@ -132,7 +132,7 @@
                             <i class="ti-email text-custom h3"></i>
                         </div>
                         <div class="contact-details text-white">
-                            <p class="mb-0">example@abc.com</p>
+                            <p class="mb-0"><?= $i_h['email']; ?></p>
                         </div>
                     </div>
                 </div>

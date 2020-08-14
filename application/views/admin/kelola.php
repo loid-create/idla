@@ -8,6 +8,33 @@
         <div class="card-header"><strong>Data Klinik</strong></div>
         <div class="card-body">
             <?= $this->session->flashdata('message'); ?>
+            <table id="dataFeedback" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Pengirim</th>
+                        <th>Email Pengirim</th>
+                        <th>Subject Pengirim</th>
+                        <th>Pesan Pengirim</th>
+                        <th>Alamat IP Pengirim</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $i = 1; ?>
+                    <?php foreach ($kontak as $msg) : ?>
+                        <tr>
+                            <td><?= $i; ?></td>
+                            <td><?= $msg['nama']; ?></td>
+                            <td><?= $msg['email']; ?></td>
+                            <td><?= $msg['subject']; ?></td>
+                            <td><?= $msg['message']; ?></td>
+                            <td><?= $msg['ip_address']; ?></td>
+                        </tr>
+                        <?php $i++; ?>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+            <br />
             <table id="dataKlinik" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
@@ -102,7 +129,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form class="user" method="POST" action="<?= base_url('admin/kelola_info'); ?>">
+                <form class="user" method="POST" action="<?= base_url('admin/edit_data_info'); ?>">
                     <input type="hidden" class="form-control" id="id" name="id" value="<?= $ic['id_info']; ?>" readonly>
                     <div class="modal-body">
                         <div class="form-group row">
@@ -148,7 +175,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form class="user" method="POST" action="<?= base_url('admin/kelola_info'); ?>">
+                <form class="user" method="POST" action="<?= base_url('admin/edit_data_tentang'); ?>">
                     <input type="hidden" class="form-control" id="id" name="id" value="<?= $t['id_tentang']; ?>" readonly>
                     <div class="modal-body">
                         <div class="form-group row">
@@ -187,21 +214,21 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form class="user" method="POST" action="<?= base_url('admin/kelola_info'); ?>">
+                <form class="user" method="POST" action="<?= base_url('admin/edit_data_dokter'); ?>">
                     <input type="hidden" class="form-control" id="id" name="id" value="<?= $k['id_klinik']; ?>" readonly>
                     <div class="modal-body">
                         <div class="form-group row">
-                            <label for="alamat" class="col-sm-4 col-form-label">Nama Dokter</label>
+                            <label for="namadokter" class="col-sm-4 col-form-label">Nama Dokter</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="alamat" name="alamat" value="<?= $k['nama_dokter']; ?>">
-                                <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
+                                <input type="text" class="form-control" id="namadokter" name="namadokter" value="<?= $k['nama_dokter']; ?>">
+                                <?= form_error('namadokter', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="notelp" class="col-sm-4 col-form-label">Profesi</label>
+                            <label for="profesi" class="col-sm-4 col-form-label">Profesi</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="notelp" name="notelp" value="<?= $k['profesi']; ?>">
-                                <?= form_error('notelp', '<small class="text-danger pl-3">', '</small>'); ?>
+                                <input type="text" class="form-control" id="profesi" name="profesi" value="<?= $k['profesi']; ?>">
+                                <?= form_error('profesi', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>
                     </div>

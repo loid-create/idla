@@ -183,6 +183,53 @@ class Auth_model extends CI_Model
         $this->db->update('peliharaan', $data);
     }
 
+    public function editInfo()
+    {
+        $id = $this->input->post('id', true);
+        $alt_info = $this->input->post('alamat', true);
+        $np_info = $this->input->post('notelp', true);
+        $em_info = $this->input->post('email', true);
+
+        $data = [
+            'alamat' => htmlspecialchars($alt_info),
+            'notelp' => htmlspecialchars($np_info),
+            'email' => htmlspecialchars($em_info)
+        ];
+
+        $this->db->where('id_info', $id);
+        $this->db->update('info', $data);
+    }
+
+    public function editTentang()
+    {
+        $id = $this->input->post('id', true);
+        $n_klinik = $this->input->post('namaklinik', true);
+        $t_klinik = $this->input->post('tentang', true);
+
+        $data = [
+            'nama_klinik' => htmlspecialchars($n_klinik),
+            'isi_tentang' => htmlspecialchars($t_klinik)
+        ];
+
+        $this->db->where('id_tentang', $id);
+        $this->db->update('tentang', $data);
+    }
+
+    public function editDokterKlinik()
+    {
+        $id = $this->input->post('id', true);
+        $nd_k = $this->input->post('namadokter', true);
+        $pd_k = $this->input->post('profesi', true);
+
+        $data = [
+            'nama_dokter' => htmlspecialchars($nd_k),
+            'profesi' => htmlspecialchars($pd_k)
+        ];
+
+        $this->db->where('id_klinik', $id);
+        $this->db->update('klinik', $data);
+    }
+
     public function deletePet($id)
     {
         $this->db->where('id', $id);

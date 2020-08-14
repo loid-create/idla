@@ -10,11 +10,26 @@ class Home extends CI_Controller
 
 	public function index()
 	{
-		$this->load->view('home/index');
+		$ambil = $this->db->get_where('info')->row_array();
+		$data['i_h'] =  $ambil;
+
+		$this->load->view('home/index', $data);
 	}
 	public function tentang()
 	{
-		$this->load->view('home/tentang');
+		$drh1 = $this->db->get_where('klinik', ['id_klinik' => '1'])->row_array();
+		$data['tg1'] =  $drh1;
+
+		$drh2 = $this->db->get_where('klinik', ['id_klinik' => '2'])->row_array();
+		$data['tg2'] =  $drh2;
+
+		$ambil = $this->db->get_where('info')->row_array();
+		$data['i_h'] =  $ambil;
+
+		$ambil2 = $this->db->get_where('tentang')->row_array();
+		$data['t_k'] =  $ambil2;
+
+		$this->load->view('home/tentang', $data);
 	}
 	public function kontak()
 	{
