@@ -83,6 +83,30 @@ class Admin extends CI_Controller
         }
     }
 
+    public function edit_data_tentang()
+    {
+        $this->form_validation->set_rules('namaklinik', 'Nama Klinik', 'required|trim');
+        $this->form_validation->set_rules('tentang', 'Tentang Klinik', 'required|trim');
+
+        if ($this->form_validation->run() == true) {
+            $this->authen->editTentang();
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"><strong>Data Info Klinik kamu berhasil diubah !</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            redirect('admin/kelola_info');
+        }
+    }
+
+    public function edit_data_dokter()
+    {
+        $this->form_validation->set_rules('namadokter', 'Nama Klinik', 'required|trim');
+        $this->form_validation->set_rules('profesi', 'Tentang Klinik', 'required|trim');
+
+        if ($this->form_validation->run() == true) {
+            $this->authen->editDokterKlinik();
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"><strong>Data Info Klinik kamu berhasil diubah !</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            redirect('admin/kelola_info');
+        }
+    }
+
     public function hapus_data_member()
     {
         $id = $this->uri->segment(3);
