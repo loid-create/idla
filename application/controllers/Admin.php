@@ -16,6 +16,9 @@ class Admin extends CI_Controller
         $data['title'] = 'Eldora Vet Clinic - Admin';
         $data['admin'] =  $ambil;
 
+        $name = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['n_admin'] = $name;
+
         $this->load->view('admin/templates/header', $data);
         $this->load->view('admin/templates/sidebar', $data);
         $this->load->view('admin/templates/topbar', $data);
@@ -28,6 +31,9 @@ class Admin extends CI_Controller
         $ambil = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = 'Eldora Vet Clinic - Tambah Dokter';
         $data['admin'] =  $ambil;
+
+        $name = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['n_admin'] = $name;
 
         //validasi
         $this->form_validation->set_rules('name', 'Name', 'required|trim');
@@ -59,6 +65,9 @@ class Admin extends CI_Controller
         $ambil = $this->db->get_where('user')->row_array();
         $data['title'] = 'Eldora Vet Clinic - Data Member';
         $data['admin'] =  $ambil;
+
+        $name = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['n_admin'] = $name;
 
         $hasil1 = $this->db->select('*')->where('role_id', '2')->get('user')->result_array();
         $data['dtMember'] = $hasil1;
@@ -129,6 +138,9 @@ class Admin extends CI_Controller
         $data['title'] = 'Eldora Vet Clinic - Data Dokter';
         $data['admin'] =  $ambil;
 
+        $name = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['n_admin'] = $name;
+
         $hasil1 = $this->db->select('*')->where('role_id', '3')->get('user')->result_array();
         $data['dtDokter'] = $hasil1;
 
@@ -144,6 +156,9 @@ class Admin extends CI_Controller
         $ambil = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = 'Eldora Vet Clinic - Kelola Info Klinik';
         $data['admin'] =  $ambil;
+
+        $name = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['n_admin'] = $name;
 
         $hasil1 = $this->db->get('info')->result_array();
         $data['infoclinic'] = $hasil1;
