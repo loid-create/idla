@@ -23,7 +23,6 @@ class Auth_model extends CI_Model
             'date_created' => date('Y-m-d')
         ];
         $this->db->insert('user', $data);
-        $this->db->update('janji_temu', $data);
         return $data;
     }
 
