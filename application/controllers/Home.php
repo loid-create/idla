@@ -33,13 +33,16 @@ class Home extends CI_Controller
 	}
 	public function kontak()
 	{
+		$ambil = $this->db->get_where('info')->row_array();
+		$data['i_ktk'] =  $ambil;
+
 		$this->form_validation->set_rules('name', 'Name', 'required|trim');
 		$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
 		$this->form_validation->set_rules('subject', 'Subject', 'required|trim');
 		$this->form_validation->set_rules('comments', 'Pesan', 'required|trim');
 
 		if ($this->form_validation->run() == false) {
-			$this->load->view('home/kontak');
+			$this->load->view('home/kontak', $data);
 		} else {
 			$this->authen->sendKontak();
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Pesan kamu berhasil dikirimkan, terimakasih.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
@@ -48,6 +51,8 @@ class Home extends CI_Controller
 	}
 	public function daftar()
 	{
+		$ambil = $this->db->get_where('info')->row_array();
+		$data['i_reg'] =  $ambil;
 		//validasi
 		$this->form_validation->set_rules('name', 'Name', 'required|trim|max_length[50]', [
 			'max_length' => 'Nama tidak boleh lebih dari 50 huruf !'
@@ -64,7 +69,7 @@ class Home extends CI_Controller
 		if ($this->form_validation->run() == false) {
 			$this->load->view('templates/header');
 			$this->load->view('home/daftar');
-			$this->load->view('templates/footer');
+			$this->load->view('templates/footer', $data);
 		} else {
 			$this->authen->register();
 			//pesan flashdata berhasil register
@@ -74,12 +79,15 @@ class Home extends CI_Controller
 	}
 	public function masuk()
 	{
+		$ambil = $this->db->get_where('info')->row_array();
+		$data['i_reg'] =  $ambil;
+
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required');
 		if ($this->form_validation->run() == false) {
 			$this->load->view('templates/header');
 			$this->load->view('home/masuk');
-			$this->load->view('templates/footer');
+			$this->load->view('templates/footer', $data);
 		} else {
 			//validasi success
 			$this->_login();

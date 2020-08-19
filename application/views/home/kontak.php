@@ -151,7 +151,7 @@
                             <i class="ti-location-pin text-custom h3"></i>
                         </div>
                         <div class="contact-details text-white">
-                            <p class="mb-0">Jl. Gunung Krakatau No.261, Pulo Brayan Darat I, Kec. Medan Tim., Kota Medan, Sumatera Utara 20236</p>
+                            <p class="mb-0"><?= $i_ktk['alamat']; ?></p>
                         </div>
                     </div>
                 </div>
@@ -161,7 +161,7 @@
                             <i class="ti-mobile text-custom h3"></i>
                         </div>
                         <div class="contact-details text-white">
-                            <p class="mb-0">+628126494668</p>
+                            <p class="mb-0"><?= $i_ktk['notelp']; ?></p>
                         </div>
                     </div>
                 </div>
@@ -171,7 +171,7 @@
                             <i class="ti-email text-custom h3"></i>
                         </div>
                         <div class="contact-details text-white">
-                            <p class="mb-0">example@abc.com</p>
+                            <p class="mb-0"><?= $i_ktk['email']; ?></p>
                         </div>
                     </div>
                 </div>
